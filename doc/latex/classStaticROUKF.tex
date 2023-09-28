@@ -1,0 +1,459 @@
+\hypertarget{classStaticROUKF}{}\section{Static\+R\+O\+U\+KF Class Reference}
+\label{classStaticROUKF}\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+
+
+{\ttfamily \#include $<$Static\+R\+O\+U\+K\+F.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classStaticROUKF_aa134c047aa5fcdeca7d527666c2903af}{P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}} \{ {\bfseries D\+E\+F\+A\+U\+LT}, 
+{\bfseries P\+O\+S\+I\+T\+I\+VE}, 
+{\bfseries R\+A\+N\+G\+E\+D\+\_\+\+L\+O\+G\+\_\+\+D\+I\+ST}, 
+{\bfseries R\+A\+N\+G\+E\+D\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+D\+I\+ST}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaticROUKF_ad16035ac639499eb59aee6b88ca9ca52}{Static\+R\+O\+U\+KF}} (int \mbox{\hyperlink{classStaticROUKF_a3b30dbaa7706106840323888eff5f7b5}{n\+Observations}}, int \mbox{\hyperlink{classStaticROUKF_ad512fa829a858c957c9fa38f45e6b1e0}{n\+States}}, int \mbox{\hyperlink{classStaticROUKF_a2b03763759259e2742eef0221a4218f7}{n\+Parameters}}, double $\ast$states\+Uncertainty, double $\ast$parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\item 
+double \mbox{\hyperlink{classStaticROUKF_a60e34a2958fa111850d2e74bc85c4f64}{execute\+Step}} (double $\ast$Zkhatc, forward\+Op A, observation\+Op H)
+\item 
+double \mbox{\hyperlink{classStaticROUKF_a8b0b1ec67cf2f16366c628f775519baf}{execute\+Step\+Parallel}} (double $\ast$Zkhatc, forward\+Op A, observation\+Op H, int seed, M\+P\+I\+\_\+\+Comm local\+\_\+comm, M\+P\+I\+\_\+\+Comm masters\+\_\+comm)
+\item 
+void \mbox{\hyperlink{classStaticROUKF_a2df76479be92ab63f645eb27184f9a23}{reset}} (int \mbox{\hyperlink{classStaticROUKF_a3b30dbaa7706106840323888eff5f7b5}{n\+Observations}}, int \mbox{\hyperlink{classStaticROUKF_ad512fa829a858c957c9fa38f45e6b1e0}{n\+States}}, int \mbox{\hyperlink{classStaticROUKF_a2b03763759259e2742eef0221a4218f7}{n\+Parameters}}, double $\ast$states\+Uncertainty, double $\ast$parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\item 
+void \mbox{\hyperlink{classStaticROUKF_a1dda098190863474729ba15728b5943a}{to\+String}} ()
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classStaticROUKF_a5000d72faeb9a7f496ab24ae09ead1ab}{get\+Parameters\+Std}} ()
+\item 
+virtual void \mbox{\hyperlink{classStaticROUKF_ac1acb518b1978a0c07bc9b8c6a1fc36a}{get\+Parameters}} (double $\ast$$\ast$ThetaC)
+\item 
+virtual void \mbox{\hyperlink{classStaticROUKF_a4588baa8e0022f23b8cd8b43f10dc74a}{set\+Parameters}} (double $\ast$ThetaC)
+\item 
+void \mbox{\hyperlink{classStaticROUKF_ae51260a2b2792f27ecf3c441ebe532d4}{get\+Error}} (double $\ast$$\ast$err)
+\item 
+double \mbox{\hyperlink{classStaticROUKF_acf22483dd4fefba60df6f5e7f29429ec}{get\+Obs\+Error}} (int num\+Observation)
+\item 
+int \mbox{\hyperlink{classStaticROUKF_ae94282d13b307666494ee76aadc58aa4}{get\+Observations}} () const
+\item 
+int \mbox{\hyperlink{classStaticROUKF_a9896d986a5cb17d1672b3aa8ff5a806d}{get\+States}} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a8c15ae84fa30d7663ba976f8996dd81f}{Theta}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a58ed92ebb17443f82e2c7124287c8173}{U}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a7d4e7278e9aed5a551905ce4109da072}{U2}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_abbdca814d9577bf7b9f34264cb1f6836}{L\+Theta}}
+\item 
+arma\+::sp\+\_\+mat \mbox{\hyperlink{classStaticROUKF_a612d1fae1853a0dba561a2557bb6d844}{Wi}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a135dff2733c7d15f6a481a8b09d82dce}{sigma}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a23471ddebcf45d3d2c6a0867ac47bde3}{Dsigma}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_a0d0d000c613a6f83224f1e2af9c90c26}{Pa}}
+\item 
+arma\+::mat \mbox{\hyperlink{classStaticROUKF_ab4f563a81a206f47c1b60e3b0e80f356}{error}}
+\item 
+int \mbox{\hyperlink{classStaticROUKF_a3b30dbaa7706106840323888eff5f7b5}{n\+Observations}}
+\item 
+int \mbox{\hyperlink{classStaticROUKF_a2b03763759259e2742eef0221a4218f7}{n\+Parameters}}
+\item 
+int \mbox{\hyperlink{classStaticROUKF_ad512fa829a858c957c9fa38f45e6b1e0}{n\+States}}
+\item 
+double \mbox{\hyperlink{classStaticROUKF_a8b9ab6dd1eb28ac72f1d7f0d1f7f7685}{alpha}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that implements the reduced order unscented Kalman filter without statistical propagation of the internal state. 
+
+Definition at line 32 of file Static\+R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classStaticROUKF_aa134c047aa5fcdeca7d527666c2903af}\label{classStaticROUKF_aa134c047aa5fcdeca7d527666c2903af}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE@{P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}
+\index{P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE@{P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}{PARAM\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classStaticROUKF_aa134c047aa5fcdeca7d527666c2903af}{Static\+R\+O\+U\+K\+F\+::\+P\+A\+R\+A\+M\+\_\+\+T\+Y\+PE}}}
+
+Reparametrization type. Not implemented yet. 
+
+Definition at line 67 of file Static\+R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStaticROUKF_ad16035ac639499eb59aee6b88ca9ca52}\label{classStaticROUKF_ad16035ac639499eb59aee6b88ca9ca52}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Static\+R\+O\+U\+K\+F()}{StaticROUKF()}}
+{\footnotesize\ttfamily Static\+R\+O\+U\+K\+F\+::\+Static\+R\+O\+U\+KF (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{double $\ast$}]{states\+Uncertainty,  }\item[{double $\ast$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em states\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. Only S\+I\+M\+P\+L\+EX is available by now. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classStaticROUKF_ad16035ac639499eb59aee6b88ca9ca52_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classStaticROUKF_a60e34a2958fa111850d2e74bc85c4f64}\label{classStaticROUKF_a60e34a2958fa111850d2e74bc85c4f64}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!execute\+Step@{execute\+Step}}
+\index{execute\+Step@{execute\+Step}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step()}{executeStep()}}
+{\footnotesize\ttfamily double Static\+R\+O\+U\+K\+F\+::execute\+Step (\begin{DoxyParamCaption}\item[{double $\ast$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process in serial execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_a8b0b1ec67cf2f16366c628f775519baf}\label{classStaticROUKF_a8b0b1ec67cf2f16366c628f775519baf}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!execute\+Step\+Parallel@{execute\+Step\+Parallel}}
+\index{execute\+Step\+Parallel@{execute\+Step\+Parallel}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step\+Parallel()}{executeStepParallel()}}
+{\footnotesize\ttfamily double Static\+R\+O\+U\+K\+F\+::execute\+Step\+Parallel (\begin{DoxyParamCaption}\item[{double $\ast$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H,  }\item[{int}]{seed,  }\item[{M\+P\+I\+\_\+\+Comm}]{local\+\_\+comm,  }\item[{M\+P\+I\+\_\+\+Comm}]{masters\+\_\+comm }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process with parallel execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+{\em seed} & Sigma point ID for the current M\+PI process. \\
+\hline
+{\em local\+\_\+comm} & Communicator of all M\+PI processes that solve the sigma point {\ttfamily seed}. \\
+\hline
+{\em masters\+\_\+comm} & Communicator of the master M\+PI processes of each sigma point {\ttfamily seed}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_ae51260a2b2792f27ecf3c441ebe532d4}\label{classStaticROUKF_ae51260a2b2792f27ecf3c441ebe532d4}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+Error@{get\+Error}}
+\index{get\+Error@{get\+Error}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Error()}{getError()}}
+{\footnotesize\ttfamily void Static\+R\+O\+U\+K\+F\+::get\+Error (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{err }\end{DoxyParamCaption})}
+
+Returns the error associated to each observation at the current iteration in a S\+TL array. 
+\begin{DoxyParams}{Parameters}
+{\em err} & Error associated to each observation at the current iteration. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 179 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_acf22483dd4fefba60df6f5e7f29429ec}\label{classStaticROUKF_acf22483dd4fefba60df6f5e7f29429ec}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+Obs\+Error@{get\+Obs\+Error}}
+\index{get\+Obs\+Error@{get\+Obs\+Error}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Obs\+Error()}{getObsError()}}
+{\footnotesize\ttfamily double Static\+R\+O\+U\+K\+F\+::get\+Obs\+Error (\begin{DoxyParamCaption}\item[{int}]{num\+Observation }\end{DoxyParamCaption})}
+
+Returns the error associated to the {\ttfamily num\+Observation} observation. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Observation} & Index of the observation of interest. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 183 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_ae94282d13b307666494ee76aadc58aa4}\label{classStaticROUKF_ae94282d13b307666494ee76aadc58aa4}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+Observations@{get\+Observations}}
+\index{get\+Observations@{get\+Observations}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Observations()}{getObservations()}}
+{\footnotesize\ttfamily int Static\+R\+O\+U\+K\+F\+::get\+Observations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Return the number of observations used in this instance of the kalman filter. \begin{DoxyReturn}{Returns}
+Number of observations used in this instance of the kalman filter. 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_ac1acb518b1978a0c07bc9b8c6a1fc36a}\label{classStaticROUKF_ac1acb518b1978a0c07bc9b8c6a1fc36a}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+Parameters@{get\+Parameters}}
+\index{get\+Parameters@{get\+Parameters}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Parameters()}{getParameters()}}
+{\footnotesize\ttfamily void Static\+R\+O\+U\+K\+F\+::get\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Getter of the field {\ttfamily Theta}. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Field {\ttfamily Theta} converted to S\+TL array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 171 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_a5000d72faeb9a7f496ab24ae09ead1ab}\label{classStaticROUKF_a5000d72faeb9a7f496ab24ae09ead1ab}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+Parameters\+Std@{get\+Parameters\+Std}}
+\index{get\+Parameters\+Std@{get\+Parameters\+Std}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Parameters\+Std()}{getParametersStd()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Static\+R\+O\+U\+K\+F\+::get\+Parameters\+Std (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a vector with the standard variation of each parameter at the current iteration. \begin{DoxyReturn}{Returns}
+Vector with the standard variation of each parameter at the current iteration. 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_a9896d986a5cb17d1672b3aa8ff5a806d}\label{classStaticROUKF_a9896d986a5cb17d1672b3aa8ff5a806d}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!get\+States@{get\+States}}
+\index{get\+States@{get\+States}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+States()}{getStates()}}
+{\footnotesize\ttfamily int Static\+R\+O\+U\+K\+F\+::get\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Return the number of states used in this instance of the kalman filter. \begin{DoxyReturn}{Returns}
+Number of states used in this instance of the kalman filter. 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_a2df76479be92ab63f645eb27184f9a23}\label{classStaticROUKF_a2df76479be92ab63f645eb27184f9a23}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!reset@{reset}}
+\index{reset@{reset}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Static\+R\+O\+U\+K\+F\+::reset (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{double $\ast$}]{states\+Uncertainty,  }\item[{double $\ast$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Returns to the initial state of the kalman filter. Not fully tested 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em states\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. Only S\+I\+M\+P\+L\+EX is available by now. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 187 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classStaticROUKF_a2df76479be92ab63f645eb27184f9a23_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classStaticROUKF_a4588baa8e0022f23b8cd8b43f10dc74a}\label{classStaticROUKF_a4588baa8e0022f23b8cd8b43f10dc74a}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!set\+Parameters@{set\+Parameters}}
+\index{set\+Parameters@{set\+Parameters}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+Parameters()}{setParameters()}}
+{\footnotesize\ttfamily void Static\+R\+O\+U\+K\+F\+::set\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Setter of the field {\ttfamily Theta}. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Array of parameters. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 175 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classStaticROUKF_a1dda098190863474729ba15728b5943a}\label{classStaticROUKF_a1dda098190863474729ba15728b5943a}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily void Static\+R\+O\+U\+K\+F\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints the private attributes of the \mbox{\hyperlink{classROUKF}{R\+O\+U\+KF}} instance. 
+
+Definition at line 213 of file Static\+R\+O\+U\+K\+F.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classStaticROUKF_a8b9ab6dd1eb28ac72f1d7f0d1f7f7685}\label{classStaticROUKF_a8b9ab6dd1eb28ac72f1d7f0d1f7f7685}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!alpha@{alpha}}
+\index{alpha@{alpha}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily double Static\+R\+O\+U\+K\+F\+::alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+Weight for each sigma point. 
+
+Definition at line 62 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a23471ddebcf45d3d2c6a0867ac47bde3}\label{classStaticROUKF_a23471ddebcf45d3d2c6a0867ac47bde3}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Dsigma@{Dsigma}}
+\index{Dsigma@{Dsigma}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Dsigma}{Dsigma}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::\+Dsigma\hspace{0.3cm}{\ttfamily [private]}}
+
+Matrix with sigma points weighted as rows. 
+
+Definition at line 48 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_ab4f563a81a206f47c1b60e3b0e80f356}\label{classStaticROUKF_ab4f563a81a206f47c1b60e3b0e80f356}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!error@{error}}
+\index{error@{error}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::error\hspace{0.3cm}{\ttfamily [private]}}
+
+Vector with the observations errors after the last iteration. 
+
+Definition at line 53 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_abbdca814d9577bf7b9f34264cb1f6836}\label{classStaticROUKF_abbdca814d9577bf7b9f34264cb1f6836}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!L\+Theta@{L\+Theta}}
+\index{L\+Theta@{L\+Theta}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{L\+Theta}{LTheta}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::\+L\+Theta\hspace{0.3cm}{\ttfamily [private]}}
+
+L part of the covariance matrix after LU factorization concerning to the parameter part of the extended state vector. 
+
+Definition at line 41 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a3b30dbaa7706106840323888eff5f7b5}\label{classStaticROUKF_a3b30dbaa7706106840323888eff5f7b5}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!n\+Observations@{n\+Observations}}
+\index{n\+Observations@{n\+Observations}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+Observations}{nObservations}}
+{\footnotesize\ttfamily int Static\+R\+O\+U\+K\+F\+::n\+Observations\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of observations. 
+
+Definition at line 56 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a2b03763759259e2742eef0221a4218f7}\label{classStaticROUKF_a2b03763759259e2742eef0221a4218f7}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!n\+Parameters@{n\+Parameters}}
+\index{n\+Parameters@{n\+Parameters}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+Parameters}{nParameters}}
+{\footnotesize\ttfamily int Static\+R\+O\+U\+K\+F\+::n\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of parameters. 
+
+Definition at line 58 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_ad512fa829a858c957c9fa38f45e6b1e0}\label{classStaticROUKF_ad512fa829a858c957c9fa38f45e6b1e0}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!n\+States@{n\+States}}
+\index{n\+States@{n\+States}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+States}{nStates}}
+{\footnotesize\ttfamily int Static\+R\+O\+U\+K\+F\+::n\+States\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of states. 
+
+Definition at line 60 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a0d0d000c613a6f83224f1e2af9c90c26}\label{classStaticROUKF_a0d0d000c613a6f83224f1e2af9c90c26}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Pa@{Pa}}
+\index{Pa@{Pa}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Pa}{Pa}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::\+Pa\hspace{0.3cm}{\ttfamily [private]}}
+
+Matrix {\ttfamily sigma} times {\ttfamily Dsigma} . 
+
+Definition at line 50 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a135dff2733c7d15f6a481a8b09d82dce}\label{classStaticROUKF_a135dff2733c7d15f6a481a8b09d82dce}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!sigma@{sigma}}
+\index{sigma@{sigma}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{sigma}{sigma}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::sigma\hspace{0.3cm}{\ttfamily [private]}}
+
+Matrix with sigma points as columns. 
+
+Definition at line 46 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a8c15ae84fa30d7663ba976f8996dd81f}\label{classStaticROUKF_a8c15ae84fa30d7663ba976f8996dd81f}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Theta@{Theta}}
+\index{Theta@{Theta}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Theta}{Theta}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::\+Theta\hspace{0.3cm}{\ttfamily [private]}}
+
+Parameters vector. 
+
+Definition at line 35 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a58ed92ebb17443f82e2c7124287c8173}\label{classStaticROUKF_a58ed92ebb17443f82e2c7124287c8173}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!U@{U}}
+\index{U@{U}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{U}{U}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::U\hspace{0.3cm}{\ttfamily [private]}}
+
+U part of the covariance matrix after LU factorization. 
+
+Definition at line 37 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a7d4e7278e9aed5a551905ce4109da072}\label{classStaticROUKF_a7d4e7278e9aed5a551905ce4109da072}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!U2@{U2}}
+\index{U2@{U2}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{U2}{U2}}
+{\footnotesize\ttfamily arma\+::mat Static\+R\+O\+U\+K\+F\+::\+U2\hspace{0.3cm}{\ttfamily [private]}}
+
+U squared. 
+
+Definition at line 39 of file Static\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classStaticROUKF_a612d1fae1853a0dba561a2557bb6d844}\label{classStaticROUKF_a612d1fae1853a0dba561a2557bb6d844}} 
+\index{Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}!Wi@{Wi}}
+\index{Wi@{Wi}!Static\+R\+O\+U\+KF@{Static\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Wi}{Wi}}
+{\footnotesize\ttfamily arma\+::sp\+\_\+mat Static\+R\+O\+U\+K\+F\+::\+Wi\hspace{0.3cm}{\ttfamily [private]}}
+
+Observations confidence matrix. 
+
+Definition at line 43 of file Static\+R\+O\+U\+K\+F.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Static\+R\+O\+U\+K\+F.\+h\item 
+Static\+R\+O\+U\+K\+F.\+cpp\end{DoxyCompactItemize}

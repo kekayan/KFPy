@@ -1,0 +1,114 @@
+.TH "CompositeParameterMapper" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CompositeParameterMapper
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <CompositeParameterMapper\&.h>\fP
+.PP
+Inherits \fBAbstractParameterMapper\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCompositeParameterMapper\fP (vector< int > \fBparamsPerMapper\fP, vector< \fBAbstractParameterMapper\fP *> \fBmappers\fP)"
+.br
+.ti -1c
+.RI "virtual \fB~CompositeParameterMapper\fP ()"
+.br
+.ti -1c
+.RI "vector< double > \fBmap\fP (vector< double > problemParameters)"
+.br
+.ti -1c
+.RI "vector< double > \fBunmap\fP (vector< double > kalmanParameters)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "vector< \fBAbstractParameterMapper\fP * > \fBmappers\fP"
+.br
+.ti -1c
+.RI "vector< int > \fBparamsPerMapper\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementation of the \fBAbstractParameterMapper\fP class using a composite design pattern\&. It allows to specify a mapper for each parameter (or a subset of parameters)\&. 
+.PP
+Definition at line 21 of file CompositeParameterMapper\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "CompositeParameterMapper::CompositeParameterMapper (vector< int > paramsPerMapper, vector< \fBAbstractParameterMapper\fP *> mappers)"
+Class constructor\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIparamsPerMapper\fP Set of the number of parameters treated by each mapper\&. 
+.br
+\fImappers\fP Set of mapper that map the problem parameters in kalman parameters\&. 
+.RE
+.PP
+
+.PP
+Definition at line 11 of file CompositeParameterMapper\&.cpp\&.
+.SS "CompositeParameterMapper::~CompositeParameterMapper ()\fC [virtual]\fP"
+Dummy destructor\&. 
+.PP
+Definition at line 16 of file CompositeParameterMapper\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "vector< double > CompositeParameterMapper::map (vector< double > problemParameters)\fC [virtual]\fP"
+Maps the problem parameters into the space of parameters where kalman filter optimize them\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIproblemParameters\fP Set of problem parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of kalman parameters 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 20 of file CompositeParameterMapper\&.cpp\&.
+.SS "vector< double > CompositeParameterMapper::unmap (vector< double > kalmanParameters)\fC [virtual]\fP"
+Maps the kalman parameters into the space of problem parameters\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkalmanParameters\fP Set of kalman parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of problem parameters\&. 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 33 of file CompositeParameterMapper\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "vector<\fBAbstractParameterMapper\fP *> CompositeParameterMapper::mappers\fC [private]\fP"
+Set of mapper that map the problem parameters in kalman parameters\&. 
+.PP
+Definition at line 23 of file CompositeParameterMapper\&.h\&.
+.SS "vector<int> CompositeParameterMapper::paramsPerMapper\fC [private]\fP"
+Set of the number of parameters treated by each mapper\&. 
+.PP
+Definition at line 25 of file CompositeParameterMapper\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

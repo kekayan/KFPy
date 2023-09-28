@@ -1,0 +1,106 @@
+\hypertarget{classExponentialParameterMapper}{}\section{Exponential\+Parameter\+Mapper Class Reference}
+\label{classExponentialParameterMapper}\index{Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}}
+
+
+{\ttfamily \#include $<$Exponential\+Parameter\+Mapper.\+h$>$}
+
+
+
+Inheritance diagram for Exponential\+Parameter\+Mapper\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classExponentialParameterMapper__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Exponential\+Parameter\+Mapper\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{classExponentialParameterMapper__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classExponentialParameterMapper_ac2e4af5f64676cb7a3ff664ff92f50fb}{Exponential\+Parameter\+Mapper}} ()
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classExponentialParameterMapper_a6abcf5b0efb8ef01ced062b7498c923e}{map}} (vector$<$ double $>$ problem\+Parameters)
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classExponentialParameterMapper_ad7040a1ac834e53691bd157df925c545}{unmap}} (vector$<$ double $>$ kalman\+Parameters)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the \mbox{\hyperlink{classAbstractParameterMapper}{Abstract\+Parameter\+Mapper}} class that map the problem parameters into the kalman parameters using a log function. 
+
+Definition at line 17 of file Exponential\+Parameter\+Mapper.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classExponentialParameterMapper_ac2e4af5f64676cb7a3ff664ff92f50fb}\label{classExponentialParameterMapper_ac2e4af5f64676cb7a3ff664ff92f50fb}} 
+\index{Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}!Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}}
+\index{Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}!Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{Exponential\+Parameter\+Mapper()}{ExponentialParameterMapper()}}
+{\footnotesize\ttfamily Exponential\+Parameter\+Mapper\+::\+Exponential\+Parameter\+Mapper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Dummy constructor. 
+
+Definition at line 11 of file Exponential\+Parameter\+Mapper.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classExponentialParameterMapper_a6abcf5b0efb8ef01ced062b7498c923e}\label{classExponentialParameterMapper_a6abcf5b0efb8ef01ced062b7498c923e}} 
+\index{Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}!map@{map}}
+\index{map@{map}!Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Exponential\+Parameter\+Mapper\+::map (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{problem\+Parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Maps the problem parameters into the space of parameters where kalman filter optimize them. 
+\begin{DoxyParams}{Parameters}
+{\em problem\+Parameters} & Set of problem parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of kalman parameters 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractParameterMapper_abb9e78545ff023f2b786b759ec2d23e4}{Abstract\+Parameter\+Mapper}}.
+
+
+
+Definition at line 14 of file Exponential\+Parameter\+Mapper.\+cpp.
+
+\mbox{\Hypertarget{classExponentialParameterMapper_ad7040a1ac834e53691bd157df925c545}\label{classExponentialParameterMapper_ad7040a1ac834e53691bd157df925c545}} 
+\index{Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}!unmap@{unmap}}
+\index{unmap@{unmap}!Exponential\+Parameter\+Mapper@{Exponential\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{unmap()}{unmap()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Exponential\+Parameter\+Mapper\+::unmap (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{kalman\+Parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Maps the kalman parameters into the space of problem parameters. 
+\begin{DoxyParams}{Parameters}
+{\em kalman\+Parameters} & Set of kalman parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of problem parameters. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractParameterMapper_a7fc9715759582e218a3bc38ec43e2d57}{Abstract\+Parameter\+Mapper}}.
+
+
+
+Definition at line 23 of file Exponential\+Parameter\+Mapper.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mapping/Exponential\+Parameter\+Mapper.\+h\item 
+mapping/Exponential\+Parameter\+Mapper.\+cpp\end{DoxyCompactItemize}

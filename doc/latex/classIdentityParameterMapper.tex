@@ -1,0 +1,106 @@
+\hypertarget{classIdentityParameterMapper}{}\section{Identity\+Parameter\+Mapper Class Reference}
+\label{classIdentityParameterMapper}\index{Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}}
+
+
+{\ttfamily \#include $<$Identity\+Parameter\+Mapper.\+h$>$}
+
+
+
+Inheritance diagram for Identity\+Parameter\+Mapper\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classIdentityParameterMapper__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Identity\+Parameter\+Mapper\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classIdentityParameterMapper__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIdentityParameterMapper_ae09bce8a0343460df2dc251fede4b8ce}{Identity\+Parameter\+Mapper}} ()
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classIdentityParameterMapper_a21105fcfd2e89ac5529f97433f03b1c3}{map}} (vector$<$ double $>$ problem\+Parameters)
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classIdentityParameterMapper_ad7ad11e683701104024a553eb8f2373b}{unmap}} (vector$<$ double $>$ kalman\+Parameters)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the \mbox{\hyperlink{classAbstractParameterMapper}{Abstract\+Parameter\+Mapper}} class that maps the problem parameters directly in the kalman parameter space without modifications. 
+
+Definition at line 17 of file Identity\+Parameter\+Mapper.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classIdentityParameterMapper_ae09bce8a0343460df2dc251fede4b8ce}\label{classIdentityParameterMapper_ae09bce8a0343460df2dc251fede4b8ce}} 
+\index{Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}!Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}}
+\index{Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}!Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{Identity\+Parameter\+Mapper()}{IdentityParameterMapper()}}
+{\footnotesize\ttfamily Identity\+Parameter\+Mapper\+::\+Identity\+Parameter\+Mapper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Dummy constructor. 
+
+Definition at line 10 of file Identity\+Parameter\+Mapper.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIdentityParameterMapper_a21105fcfd2e89ac5529f97433f03b1c3}\label{classIdentityParameterMapper_a21105fcfd2e89ac5529f97433f03b1c3}} 
+\index{Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}!map@{map}}
+\index{map@{map}!Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Identity\+Parameter\+Mapper\+::map (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{problem\+Parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Maps the problem parameters into the space of parameters where kalman filter optimize them. 
+\begin{DoxyParams}{Parameters}
+{\em problem\+Parameters} & Set of problem parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of kalman parameters 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractParameterMapper_abb9e78545ff023f2b786b759ec2d23e4}{Abstract\+Parameter\+Mapper}}.
+
+
+
+Definition at line 13 of file Identity\+Parameter\+Mapper.\+cpp.
+
+\mbox{\Hypertarget{classIdentityParameterMapper_ad7ad11e683701104024a553eb8f2373b}\label{classIdentityParameterMapper_ad7ad11e683701104024a553eb8f2373b}} 
+\index{Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}!unmap@{unmap}}
+\index{unmap@{unmap}!Identity\+Parameter\+Mapper@{Identity\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{unmap()}{unmap()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Identity\+Parameter\+Mapper\+::unmap (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{kalman\+Parameters }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Maps the kalman parameters into the space of problem parameters. 
+\begin{DoxyParams}{Parameters}
+{\em kalman\+Parameters} & Set of kalman parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of problem parameters. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractParameterMapper_a7fc9715759582e218a3bc38ec43e2d57}{Abstract\+Parameter\+Mapper}}.
+
+
+
+Definition at line 17 of file Identity\+Parameter\+Mapper.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mapping/Identity\+Parameter\+Mapper.\+h\item 
+mapping/Identity\+Parameter\+Mapper.\+cpp\end{DoxyCompactItemize}

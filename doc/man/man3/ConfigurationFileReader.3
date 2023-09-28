@@ -1,0 +1,172 @@
+.TH "ConfigurationFileReader" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConfigurationFileReader
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ConfigurationFileReader\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBFILTER_TYPES\fP { \fBMODEL_ROUKF\fP = 0, \fBMODEL_MAPPED_ROUKF\fP = 1 }"
+.br
+.ti -1c
+.RI "enum \fBMAPPER_TYPES\fP { \fBIDENTITY\fP = 0, \fBEXPONENTIAL\fP = 1, \fBSIGMOIDAL\fP = 2 }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConfigurationFileReader\fP (string \fBfilename\fP)"
+.br
+.ti -1c
+.RI "\fBAbstractROUKF\fP * \fBgetInstance\fP ()"
+.br
+.ti -1c
+.RI "vector< double > \fBgetObservations\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetNParameters\fP () const"
+.br
+.ti -1c
+.RI "int \fBgetNStates\fP () const"
+.br
+.ti -1c
+.RI "int \fBgetNObservations\fP () const"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBfilename\fP"
+.br
+.ti -1c
+.RI "vector< double > \fBobservations\fP"
+.br
+.ti -1c
+.RI "int \fBnStates\fP"
+.br
+.ti -1c
+.RI "int \fBnParameters\fP"
+.br
+.ti -1c
+.RI "int \fBnObservations\fP"
+.br
+.ti -1c
+.RI "\fBAbstractROUKF\fP * \fBroukfModel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+File reader class that after parsing the target file generates a Kalman filter instance with appropriate mappers\&. 
+.PP
+Definition at line 20 of file ConfigurationFileReader\&.h\&.
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBConfigurationFileReader::FILTER_TYPES\fP"
+Types of filter that can be explicit in the configuration file\&. 
+.PP
+Definition at line 37 of file ConfigurationFileReader\&.h\&.
+.SS "enum \fBConfigurationFileReader::MAPPER_TYPES\fP"
+Types of mappers that can be explicit in the configuration file\&. 
+.PP
+Definition at line 39 of file ConfigurationFileReader\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ConfigurationFileReader::ConfigurationFileReader (string filename)"
+Reader constructor\&. 
+.PP
+Definition at line 24 of file ConfigurationFileReader\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBAbstractROUKF\fP * ConfigurationFileReader::getInstance ()"
+Returns the kalman instance associated with the configuration file\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Kalman model\&. 
+.RE
+.PP
+
+.PP
+Definition at line 32 of file ConfigurationFileReader\&.cpp\&.
+.SS "int ConfigurationFileReader::getNObservations () const"
+Getter for \fCnObservations\fP 
+.PP
+\fBReturns:\fP
+.RS 4
+\fCnObservations\fP 
+.RE
+.PP
+
+.PP
+Definition at line 182 of file ConfigurationFileReader\&.cpp\&.
+.SS "int ConfigurationFileReader::getNParameters () const"
+Getter for \fCnParameters\fP 
+.PP
+\fBReturns:\fP
+.RS 4
+\fCnParameters\fP 
+.RE
+.PP
+
+.PP
+Definition at line 172 of file ConfigurationFileReader\&.cpp\&.
+.SS "int ConfigurationFileReader::getNStates () const"
+Getter for \fCnStates\fP 
+.PP
+\fBReturns:\fP
+.RS 4
+\fCnStates\fP 
+.RE
+.PP
+
+.PP
+Definition at line 177 of file ConfigurationFileReader\&.cpp\&.
+.SS "vector< double > ConfigurationFileReader::getObservations ()"
+Returns the observations readed from the configuration file after executing getInstance\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Observations vector\&. 
+.RE
+.PP
+
+.PP
+Definition at line 168 of file ConfigurationFileReader\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "string ConfigurationFileReader::filename\fC [private]\fP"
+Configuration file path\&. 
+.PP
+Definition at line 22 of file ConfigurationFileReader\&.h\&.
+.SS "int ConfigurationFileReader::nObservations\fC [private]\fP"
+Quantity of observations\&. 
+.PP
+Definition at line 30 of file ConfigurationFileReader\&.h\&.
+.SS "int ConfigurationFileReader::nParameters\fC [private]\fP"
+Quantity of parameters\&. 
+.PP
+Definition at line 28 of file ConfigurationFileReader\&.h\&.
+.SS "int ConfigurationFileReader::nStates\fC [private]\fP"
+Quantity of internal states\&. 
+.PP
+Definition at line 26 of file ConfigurationFileReader\&.h\&.
+.SS "vector<double> ConfigurationFileReader::observations\fC [private]\fP"
+Observations loaded from configuration file 
+.PP
+Definition at line 24 of file ConfigurationFileReader\&.h\&.
+.SS "\fBAbstractROUKF\fP* ConfigurationFileReader::roukfModel\fC [private]\fP"
+Singleton attribute of the generated kalman filter\&. 
+.PP
+Definition at line 32 of file ConfigurationFileReader\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

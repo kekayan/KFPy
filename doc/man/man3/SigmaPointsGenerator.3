@@ -1,0 +1,149 @@
+.TH "SigmaPointsGenerator" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SigmaPointsGenerator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SigmaPointsGenerator\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBSIGMA_DISTRIBUTION\fP { \fBSIMPLEX\fP, \fBCANONIC\fP, \fBSTAR\fP, \fBSIMPLEX_STAR\fP }"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBgenerateSigmaPoints\fP (int nParameters, \fBSIGMA_DISTRIBUTION\fP distribution, arma::mat *sigma)"
+.br
+.in -1c
+.SS "Static Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBcanonicSigmaPoints\fP (int nParameters, arma::mat *sigma)"
+.br
+.ti -1c
+.RI "static void \fBsimplexSigmaPoints\fP (int nParameters, arma::mat *sigma)"
+.br
+.ti -1c
+.RI "static void \fBstarSigmaPoints\fP (int nParameters, arma::mat *sigma)"
+.br
+.ti -1c
+.RI "static void \fBsimplexStarSigmaPoints\fP (int nParameters, arma::mat *sigma)"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static arma::mat \fBgetSimplexSigmaPoints\fP (int nPoints, double weight)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Static class which generates different distributions of sigma points\&. 
+.PP
+Definition at line 16 of file SigmaPointsGenerator\&.h\&.
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP"
+Enumeration for the different kinds of sigma points distributions\&. 
+.PP
+Definition at line 19 of file SigmaPointsGenerator\&.h\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void SigmaPointsGenerator::canonicSigmaPoints (int nParameters, arma::mat * sigma)\fC [static]\fP, \fC [protected]\fP"
+Canonic sigma points (2 points per parameter symmetrics to the centroid\&.) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInParameters\fP Quantity of parameters 
+.br
+\fIsigma\fP Output matrix with one sigma point per column\&. 
+.RE
+.PP
+
+.PP
+Definition at line 34 of file SigmaPointsGenerator\&.cpp\&.
+.SS "void SigmaPointsGenerator::generateSigmaPoints (int nParameters, \fBSIGMA_DISTRIBUTION\fP distribution, arma::mat * sigma)\fC [static]\fP"
+Generates the matrix sigma where each column is a sigma point of the type \fCdistribution\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInParameters\fP Quantity of parameters to estimate\&. 
+.br
+\fIdistribution\fP Type of distribution used to generate the sigma points\&. 
+.br
+\fIsigma\fP Output matrix with one sigma point per column\&. 
+.RE
+.PP
+
+.PP
+Definition at line 12 of file SigmaPointsGenerator\&.cpp\&.
+.SS "arma::mat SigmaPointsGenerator::getSimplexSigmaPoints (int nPoints, double weight)\fC [static]\fP, \fC [private]\fP"
+Recursive generation of simplex sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInPoints\fP Quantity of points to generate\&. 
+.br
+\fIweight\fP Weight for the current generated points\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Matrix of sigma points\&. 
+.RE
+.PP
+
+.PP
+Definition at line 64 of file SigmaPointsGenerator\&.cpp\&.
+.SS "void SigmaPointsGenerator::simplexSigmaPoints (int nParameters, arma::mat * sigma)\fC [static]\fP, \fC [protected]\fP"
+Simplex sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInParameters\fP Quantity of parameters 
+.br
+\fIsigma\fP Output matrix with one sigma point per column\&. 
+.RE
+.PP
+
+.PP
+Definition at line 47 of file SigmaPointsGenerator\&.cpp\&.
+.SS "void SigmaPointsGenerator::simplexStarSigmaPoints (int nParameters, arma::mat * sigma)\fC [static]\fP, \fC [protected]\fP"
+Same as simplex sigma points with an additional point at the centroid\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInParameters\fP Quantity of parameters 
+.br
+\fIsigma\fP Output matrix with one sigma point per column\&. 
+.RE
+.PP
+
+.PP
+Definition at line 85 of file SigmaPointsGenerator\&.cpp\&.
+.SS "void SigmaPointsGenerator::starSigmaPoints (int nParameters, arma::mat * sigma)\fC [static]\fP, \fC [protected]\fP"
+Same as canonic sigma points with an additional point at the centroid\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInParameters\fP Quantity of parameters 
+.br
+\fIsigma\fP Output matrix with one sigma point per column\&. 
+.RE
+.PP
+
+.PP
+Definition at line 52 of file SigmaPointsGenerator\&.cpp\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

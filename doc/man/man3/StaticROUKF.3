@@ -1,0 +1,342 @@
+.TH "StaticROUKF" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StaticROUKF
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <StaticROUKF\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBPARAM_TYPE\fP { \fBDEFAULT\fP, \fBPOSITIVE\fP, \fBRANGED_LOG_DIST\fP, \fBRANGED_NORMAL_DIST\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBStaticROUKF\fP (int \fBnObservations\fP, int \fBnStates\fP, int \fBnParameters\fP, double *statesUncertainty, double *parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+.br
+.ti -1c
+.RI "double \fBexecuteStep\fP (double *Zkhatc, forwardOp A, observationOp H)"
+.br
+.ti -1c
+.RI "double \fBexecuteStepParallel\fP (double *Zkhatc, forwardOp A, observationOp H, int seed, MPI_Comm local_comm, MPI_Comm masters_comm)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (int \fBnObservations\fP, int \fBnStates\fP, int \fBnParameters\fP, double *statesUncertainty, double *parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+.br
+.ti -1c
+.RI "void \fBtoString\fP ()"
+.br
+.ti -1c
+.RI "vector< double > \fBgetParametersStd\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBgetParameters\fP (double **ThetaC)"
+.br
+.ti -1c
+.RI "virtual void \fBsetParameters\fP (double *ThetaC)"
+.br
+.ti -1c
+.RI "void \fBgetError\fP (double **err)"
+.br
+.ti -1c
+.RI "double \fBgetObsError\fP (int numObservation)"
+.br
+.ti -1c
+.RI "int \fBgetObservations\fP () const"
+.br
+.ti -1c
+.RI "int \fBgetStates\fP () const"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "arma::mat \fBTheta\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBU\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBU2\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBLTheta\fP"
+.br
+.ti -1c
+.RI "arma::sp_mat \fBWi\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBsigma\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBDsigma\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBPa\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBerror\fP"
+.br
+.ti -1c
+.RI "int \fBnObservations\fP"
+.br
+.ti -1c
+.RI "int \fBnParameters\fP"
+.br
+.ti -1c
+.RI "int \fBnStates\fP"
+.br
+.ti -1c
+.RI "double \fBalpha\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class that implements the reduced order unscented Kalman filter without statistical propagation of the internal state\&. 
+.PP
+Definition at line 32 of file StaticROUKF\&.h\&.
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBStaticROUKF::PARAM_TYPE\fP"
+Reparametrization type\&. Not implemented yet\&. 
+.PP
+Definition at line 67 of file StaticROUKF\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "StaticROUKF::StaticROUKF (int nObservations, int nStates, int nParameters, double * statesUncertainty, double * parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInObservations\fP Quantity of observations\&. 
+.br
+\fInStates\fP Quantity of states\&. 
+.br
+\fInParameters\fP Quantity of parameters\&. 
+.br
+\fIstatesUncertainty\fP Vector with the uncertainty of each state in X\&. 
+.br
+\fIparametersUncertainty\fP Vector with the uncertainty of each parameter in Theta\&. 
+.br
+\fIsigmaDistribution\fP Type of sigmas applied to assess the unscented transform\&. Only SIMPLEX is available by now\&. 
+.RE
+.PP
+
+.PP
+Definition at line 12 of file StaticROUKF\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "double StaticROUKF::executeStep (double * Zkhatc, forwardOp A, observationOp H)"
+Performs one step of the Kalman filtering process in serial execution of the sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIZkhatc\fP Current observations estimations\&. 
+.br
+\fIA\fP Forward operator\&. 
+.br
+\fIH\fP Observation operator; 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Current L2 norm of the errors across all observations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 39 of file StaticROUKF\&.cpp\&.
+.SS "double StaticROUKF::executeStepParallel (double * Zkhatc, forwardOp A, observationOp H, int seed, MPI_Comm local_comm, MPI_Comm masters_comm)"
+Performs one step of the Kalman filtering process with parallel execution of the sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIZkhatc\fP Current observations estimations\&. 
+.br
+\fIA\fP Forward operator\&. 
+.br
+\fIH\fP Observation operator; 
+.br
+\fIseed\fP Sigma point ID for the current MPI process\&. 
+.br
+\fIlocal_comm\fP Communicator of all MPI processes that solve the sigma point \fCseed\fP\&. 
+.br
+\fImasters_comm\fP Communicator of the master MPI processes of each sigma point \fCseed\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Current L2 norm of the errors across all observations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 98 of file StaticROUKF\&.cpp\&.
+.SS "void StaticROUKF::getError (double ** err)"
+Returns the error associated to each observation at the current iteration in a STL array\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIerr\fP Error associated to each observation at the current iteration\&. 
+.RE
+.PP
+
+.PP
+Definition at line 179 of file StaticROUKF\&.cpp\&.
+.SS "double StaticROUKF::getObsError (int numObservation)"
+Returns the error associated to the \fCnumObservation\fP observation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInumObservation\fP Index of the observation of interest\&. 
+.RE
+.PP
+
+.PP
+Definition at line 183 of file StaticROUKF\&.cpp\&.
+.SS "int StaticROUKF::getObservations () const"
+Return the number of observations used in this instance of the kalman filter\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Number of observations used in this instance of the kalman filter\&. 
+.RE
+.PP
+
+.PP
+Definition at line 230 of file StaticROUKF\&.cpp\&.
+.SS "void StaticROUKF::getParameters (double ** ThetaC)\fC [virtual]\fP"
+Getter of the field \fCTheta\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIThetaC\fP Field \fCTheta\fP converted to STL array\&. 
+.RE
+.PP
+
+.PP
+Definition at line 171 of file StaticROUKF\&.cpp\&.
+.SS "vector< double > StaticROUKF::getParametersStd ()"
+Returns a vector with the standard variation of each parameter at the current iteration\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Vector with the standard variation of each parameter at the current iteration\&. 
+.RE
+.PP
+
+.PP
+Definition at line 225 of file StaticROUKF\&.cpp\&.
+.SS "int StaticROUKF::getStates () const"
+Return the number of states used in this instance of the kalman filter\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Number of states used in this instance of the kalman filter\&. 
+.RE
+.PP
+
+.PP
+Definition at line 235 of file StaticROUKF\&.cpp\&.
+.SS "void StaticROUKF::reset (int nObservations, int nStates, int nParameters, double * statesUncertainty, double * parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+Returns to the initial state of the kalman filter\&. Not fully tested 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInObservations\fP Quantity of observations\&. 
+.br
+\fInStates\fP Quantity of states\&. 
+.br
+\fInParameters\fP Quantity of parameters\&. 
+.br
+\fIstatesUncertainty\fP Vector with the uncertainty of each state in X\&. 
+.br
+\fIparametersUncertainty\fP Vector with the uncertainty of each parameter in Theta\&. 
+.br
+\fIsigmaDistribution\fP Type of sigmas applied to assess the unscented transform\&. Only SIMPLEX is available by now\&. 
+.RE
+.PP
+
+.PP
+Definition at line 187 of file StaticROUKF\&.cpp\&.
+.SS "void StaticROUKF::setParameters (double * ThetaC)\fC [virtual]\fP"
+Setter of the field \fCTheta\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIThetaC\fP Array of parameters\&. 
+.RE
+.PP
+
+.PP
+Definition at line 175 of file StaticROUKF\&.cpp\&.
+.SS "void StaticROUKF::toString ()"
+Prints the private attributes of the \fBROUKF\fP instance\&. 
+.PP
+Definition at line 213 of file StaticROUKF\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "double StaticROUKF::alpha\fC [private]\fP"
+Weight for each sigma point\&. 
+.PP
+Definition at line 62 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::Dsigma\fC [private]\fP"
+Matrix with sigma points weighted as rows\&. 
+.PP
+Definition at line 48 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::error\fC [private]\fP"
+Vector with the observations errors after the last iteration\&. 
+.PP
+Definition at line 53 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::LTheta\fC [private]\fP"
+L part of the covariance matrix after LU factorization concerning to the parameter part of the extended state vector\&. 
+.PP
+Definition at line 41 of file StaticROUKF\&.h\&.
+.SS "int StaticROUKF::nObservations\fC [private]\fP"
+Quantity of observations\&. 
+.PP
+Definition at line 56 of file StaticROUKF\&.h\&.
+.SS "int StaticROUKF::nParameters\fC [private]\fP"
+Quantity of parameters\&. 
+.PP
+Definition at line 58 of file StaticROUKF\&.h\&.
+.SS "int StaticROUKF::nStates\fC [private]\fP"
+Quantity of states\&. 
+.PP
+Definition at line 60 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::Pa\fC [private]\fP"
+Matrix \fCsigma\fP times \fCDsigma\fP \&. 
+.PP
+Definition at line 50 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::sigma\fC [private]\fP"
+Matrix with sigma points as columns\&. 
+.PP
+Definition at line 46 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::Theta\fC [private]\fP"
+Parameters vector\&. 
+.PP
+Definition at line 35 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::U\fC [private]\fP"
+U part of the covariance matrix after LU factorization\&. 
+.PP
+Definition at line 37 of file StaticROUKF\&.h\&.
+.SS "arma::mat StaticROUKF::U2\fC [private]\fP"
+U squared\&. 
+.PP
+Definition at line 39 of file StaticROUKF\&.h\&.
+.SS "arma::sp_mat StaticROUKF::Wi\fC [private]\fP"
+Observations confidence matrix\&. 
+.PP
+Definition at line 43 of file StaticROUKF\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

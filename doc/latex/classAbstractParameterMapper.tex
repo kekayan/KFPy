@@ -1,0 +1,89 @@
+\hypertarget{classAbstractParameterMapper}{}\section{Abstract\+Parameter\+Mapper Class Reference}
+\label{classAbstractParameterMapper}\index{Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}}
+
+
+{\ttfamily \#include $<$Abstract\+Parameter\+Mapper.\+h$>$}
+
+
+
+Inheritance diagram for Abstract\+Parameter\+Mapper\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classAbstractParameterMapper__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAbstractParameterMapper_ae8e7c815952e44d47bc406f396fdf0d6}{Abstract\+Parameter\+Mapper}} ()
+\item 
+virtual vector$<$ double $>$ \mbox{\hyperlink{classAbstractParameterMapper_abb9e78545ff023f2b786b759ec2d23e4}{map}} (vector$<$ double $>$ problem\+Parameter)=0
+\item 
+virtual vector$<$ double $>$ \mbox{\hyperlink{classAbstractParameterMapper_a7fc9715759582e218a3bc38ec43e2d57}{unmap}} (vector$<$ double $>$ kalman\+Parameter)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract class that model the functions required for a parameters mapping function. The mapping functions will map the problem parameters into a better-\/behaved space of parameter for the kalman optimization. The map and unmap functions are inverse one to other. 
+
+Definition at line 21 of file Abstract\+Parameter\+Mapper.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAbstractParameterMapper_ae8e7c815952e44d47bc406f396fdf0d6}\label{classAbstractParameterMapper_ae8e7c815952e44d47bc406f396fdf0d6}} 
+\index{Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}!Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}}
+\index{Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}!Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{Abstract\+Parameter\+Mapper()}{AbstractParameterMapper()}}
+{\footnotesize\ttfamily Abstract\+Parameter\+Mapper\+::\+Abstract\+Parameter\+Mapper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Dummy constructor. 
+
+Definition at line 10 of file Abstract\+Parameter\+Mapper.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classAbstractParameterMapper_abb9e78545ff023f2b786b759ec2d23e4}\label{classAbstractParameterMapper_abb9e78545ff023f2b786b759ec2d23e4}} 
+\index{Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}!map@{map}}
+\index{map@{map}!Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily virtual vector$<$double$>$ Abstract\+Parameter\+Mapper\+::map (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{problem\+Parameter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Maps the problem parameters into the space of parameters where kalman filter optimize them. 
+\begin{DoxyParams}{Parameters}
+{\em problem\+Parameter} & Set of problem parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of kalman parameters 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCompositeParameterMapper_abac90f20835ad311cfdfc952956b9624}{Composite\+Parameter\+Mapper}}, \mbox{\hyperlink{classSigmoidParameterMapper_a808db49587ff6c2d2c2b2efc84de80f6}{Sigmoid\+Parameter\+Mapper}}, \mbox{\hyperlink{classExponentialParameterMapper_a6abcf5b0efb8ef01ced062b7498c923e}{Exponential\+Parameter\+Mapper}}, and \mbox{\hyperlink{classIdentityParameterMapper_a21105fcfd2e89ac5529f97433f03b1c3}{Identity\+Parameter\+Mapper}}.
+
+\mbox{\Hypertarget{classAbstractParameterMapper_a7fc9715759582e218a3bc38ec43e2d57}\label{classAbstractParameterMapper_a7fc9715759582e218a3bc38ec43e2d57}} 
+\index{Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}!unmap@{unmap}}
+\index{unmap@{unmap}!Abstract\+Parameter\+Mapper@{Abstract\+Parameter\+Mapper}}
+\subsubsection{\texorpdfstring{unmap()}{unmap()}}
+{\footnotesize\ttfamily virtual vector$<$double$>$ Abstract\+Parameter\+Mapper\+::unmap (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{kalman\+Parameter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Maps the kalman parameters into the space of problem parameters. 
+\begin{DoxyParams}{Parameters}
+{\em kalman\+Parameter} & Set of kalman parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Set of problem parameters. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCompositeParameterMapper_a15d15009cf9026b22f27f5d8a5880a4e}{Composite\+Parameter\+Mapper}}, \mbox{\hyperlink{classSigmoidParameterMapper_a5b7031c2945f69130e0423427525e256}{Sigmoid\+Parameter\+Mapper}}, \mbox{\hyperlink{classExponentialParameterMapper_ad7040a1ac834e53691bd157df925c545}{Exponential\+Parameter\+Mapper}}, and \mbox{\hyperlink{classIdentityParameterMapper_ad7ad11e683701104024a553eb8f2373b}{Identity\+Parameter\+Mapper}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+mapping/Abstract\+Parameter\+Mapper.\+h\item 
+mapping/Abstract\+Parameter\+Mapper.\+cpp\end{DoxyCompactItemize}

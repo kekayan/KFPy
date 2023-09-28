@@ -1,0 +1,78 @@
+.TH "ExponentialParameterMapper" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ExponentialParameterMapper
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ExponentialParameterMapper\&.h>\fP
+.PP
+Inherits \fBAbstractParameterMapper\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBExponentialParameterMapper\fP ()"
+.br
+.ti -1c
+.RI "vector< double > \fBmap\fP (vector< double > problemParameters)"
+.br
+.ti -1c
+.RI "vector< double > \fBunmap\fP (vector< double > kalmanParameters)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementation of the \fBAbstractParameterMapper\fP class that map the problem parameters into the kalman parameters using a log function\&. 
+.PP
+Definition at line 17 of file ExponentialParameterMapper\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ExponentialParameterMapper::ExponentialParameterMapper ()"
+Dummy constructor\&. 
+.PP
+Definition at line 11 of file ExponentialParameterMapper\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "vector< double > ExponentialParameterMapper::map (vector< double > problemParameters)\fC [virtual]\fP"
+Maps the problem parameters into the space of parameters where kalman filter optimize them\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIproblemParameters\fP Set of problem parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of kalman parameters 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 14 of file ExponentialParameterMapper\&.cpp\&.
+.SS "vector< double > ExponentialParameterMapper::unmap (vector< double > kalmanParameters)\fC [virtual]\fP"
+Maps the kalman parameters into the space of problem parameters\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkalmanParameters\fP Set of kalman parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of problem parameters\&. 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 23 of file ExponentialParameterMapper\&.cpp\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

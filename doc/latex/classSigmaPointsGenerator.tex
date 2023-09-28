@@ -1,0 +1,172 @@
+\hypertarget{classSigmaPointsGenerator}{}\section{Sigma\+Points\+Generator Class Reference}
+\label{classSigmaPointsGenerator}\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+
+
+{\ttfamily \#include $<$Sigma\+Points\+Generator.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} \{ {\bfseries S\+I\+M\+P\+L\+EX}, 
+{\bfseries C\+A\+N\+O\+N\+IC}, 
+{\bfseries S\+T\+AR}, 
+{\bfseries S\+I\+M\+P\+L\+E\+X\+\_\+\+S\+T\+AR}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classSigmaPointsGenerator_a72a2e6479c0d9e458bad143ea67093ba}{generate\+Sigma\+Points}} (int n\+Parameters, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} distribution, arma\+::mat $\ast$sigma)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classSigmaPointsGenerator_a9c6bab6d0253b217488a04d65853e585}{canonic\+Sigma\+Points}} (int n\+Parameters, arma\+::mat $\ast$sigma)
+\item 
+static void \mbox{\hyperlink{classSigmaPointsGenerator_a565e88c8abc4d82fc4c6aed75f9693a9}{simplex\+Sigma\+Points}} (int n\+Parameters, arma\+::mat $\ast$sigma)
+\item 
+static void \mbox{\hyperlink{classSigmaPointsGenerator_a4187ef53aff978a7f2874533ce2fb0f1}{star\+Sigma\+Points}} (int n\+Parameters, arma\+::mat $\ast$sigma)
+\item 
+static void \mbox{\hyperlink{classSigmaPointsGenerator_aecd82749d0e9865e6abfb9b8410b9542}{simplex\+Star\+Sigma\+Points}} (int n\+Parameters, arma\+::mat $\ast$sigma)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static arma\+::mat \mbox{\hyperlink{classSigmaPointsGenerator_a5cfc30f689336a2a736e8c02fdaccfd2}{get\+Simplex\+Sigma\+Points}} (int n\+Points, double weight)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Static class which generates different distributions of sigma points. 
+
+Definition at line 16 of file Sigma\+Points\+Generator.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}\label{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON@{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}
+\index{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON@{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}{SIGMA\_DISTRIBUTION}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}
+
+Enumeration for the different kinds of sigma points distributions. 
+
+Definition at line 19 of file Sigma\+Points\+Generator.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSigmaPointsGenerator_a9c6bab6d0253b217488a04d65853e585}\label{classSigmaPointsGenerator_a9c6bab6d0253b217488a04d65853e585}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!canonic\+Sigma\+Points@{canonic\+Sigma\+Points}}
+\index{canonic\+Sigma\+Points@{canonic\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{canonic\+Sigma\+Points()}{canonicSigmaPoints()}}
+{\footnotesize\ttfamily void Sigma\+Points\+Generator\+::canonic\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Parameters,  }\item[{arma\+::mat $\ast$}]{sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Canonic sigma points (2 points per parameter symmetrics to the centroid.) 
+\begin{DoxyParams}{Parameters}
+{\em n\+Parameters} & Quantity of parameters \\
+\hline
+{\em sigma} & Output matrix with one sigma point per column. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 34 of file Sigma\+Points\+Generator.\+cpp.
+
+\mbox{\Hypertarget{classSigmaPointsGenerator_a72a2e6479c0d9e458bad143ea67093ba}\label{classSigmaPointsGenerator_a72a2e6479c0d9e458bad143ea67093ba}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!generate\+Sigma\+Points@{generate\+Sigma\+Points}}
+\index{generate\+Sigma\+Points@{generate\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{generate\+Sigma\+Points()}{generateSigmaPoints()}}
+{\footnotesize\ttfamily void Sigma\+Points\+Generator\+::generate\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Parameters,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{distribution,  }\item[{arma\+::mat $\ast$}]{sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generates the matrix sigma where each column is a sigma point of the type {\ttfamily distribution}. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Parameters} & Quantity of parameters to estimate. \\
+\hline
+{\em distribution} & Type of distribution used to generate the sigma points. \\
+\hline
+{\em sigma} & Output matrix with one sigma point per column. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file Sigma\+Points\+Generator.\+cpp.
+
+\mbox{\Hypertarget{classSigmaPointsGenerator_a5cfc30f689336a2a736e8c02fdaccfd2}\label{classSigmaPointsGenerator_a5cfc30f689336a2a736e8c02fdaccfd2}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!get\+Simplex\+Sigma\+Points@{get\+Simplex\+Sigma\+Points}}
+\index{get\+Simplex\+Sigma\+Points@{get\+Simplex\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{get\+Simplex\+Sigma\+Points()}{getSimplexSigmaPoints()}}
+{\footnotesize\ttfamily arma\+::mat Sigma\+Points\+Generator\+::get\+Simplex\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Points,  }\item[{double}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Recursive generation of simplex sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Points} & Quantity of points to generate. \\
+\hline
+{\em weight} & Weight for the current generated points. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Matrix of sigma points. 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file Sigma\+Points\+Generator.\+cpp.
+
+\mbox{\Hypertarget{classSigmaPointsGenerator_a565e88c8abc4d82fc4c6aed75f9693a9}\label{classSigmaPointsGenerator_a565e88c8abc4d82fc4c6aed75f9693a9}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!simplex\+Sigma\+Points@{simplex\+Sigma\+Points}}
+\index{simplex\+Sigma\+Points@{simplex\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{simplex\+Sigma\+Points()}{simplexSigmaPoints()}}
+{\footnotesize\ttfamily void Sigma\+Points\+Generator\+::simplex\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Parameters,  }\item[{arma\+::mat $\ast$}]{sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Simplex sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Parameters} & Quantity of parameters \\
+\hline
+{\em sigma} & Output matrix with one sigma point per column. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 47 of file Sigma\+Points\+Generator.\+cpp.
+
+\mbox{\Hypertarget{classSigmaPointsGenerator_aecd82749d0e9865e6abfb9b8410b9542}\label{classSigmaPointsGenerator_aecd82749d0e9865e6abfb9b8410b9542}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!simplex\+Star\+Sigma\+Points@{simplex\+Star\+Sigma\+Points}}
+\index{simplex\+Star\+Sigma\+Points@{simplex\+Star\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{simplex\+Star\+Sigma\+Points()}{simplexStarSigmaPoints()}}
+{\footnotesize\ttfamily void Sigma\+Points\+Generator\+::simplex\+Star\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Parameters,  }\item[{arma\+::mat $\ast$}]{sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Same as simplex sigma points with an additional point at the centroid. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Parameters} & Quantity of parameters \\
+\hline
+{\em sigma} & Output matrix with one sigma point per column. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file Sigma\+Points\+Generator.\+cpp.
+
+\mbox{\Hypertarget{classSigmaPointsGenerator_a4187ef53aff978a7f2874533ce2fb0f1}\label{classSigmaPointsGenerator_a4187ef53aff978a7f2874533ce2fb0f1}} 
+\index{Sigma\+Points\+Generator@{Sigma\+Points\+Generator}!star\+Sigma\+Points@{star\+Sigma\+Points}}
+\index{star\+Sigma\+Points@{star\+Sigma\+Points}!Sigma\+Points\+Generator@{Sigma\+Points\+Generator}}
+\subsubsection{\texorpdfstring{star\+Sigma\+Points()}{starSigmaPoints()}}
+{\footnotesize\ttfamily void Sigma\+Points\+Generator\+::star\+Sigma\+Points (\begin{DoxyParamCaption}\item[{int}]{n\+Parameters,  }\item[{arma\+::mat $\ast$}]{sigma }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+Same as canonic sigma points with an additional point at the centroid. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Parameters} & Quantity of parameters \\
+\hline
+{\em sigma} & Output matrix with one sigma point per column. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file Sigma\+Points\+Generator.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Sigma\+Points\+Generator.\+h\item 
+Sigma\+Points\+Generator.\+cpp\end{DoxyCompactItemize}

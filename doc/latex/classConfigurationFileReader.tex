@@ -1,0 +1,244 @@
+\hypertarget{classConfigurationFileReader}{}\section{Configuration\+File\+Reader Class Reference}
+\label{classConfigurationFileReader}\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+
+
+{\ttfamily \#include $<$Configuration\+File\+Reader.\+h$>$}
+
+
+
+Collaboration diagram for Configuration\+File\+Reader\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{classConfigurationFileReader__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classConfigurationFileReader_a38105d1480e7e412757a48b9f5d1850a}{F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES}} \{ {\bfseries M\+O\+D\+E\+L\+\_\+\+R\+O\+U\+KF} = 0, 
+{\bfseries M\+O\+D\+E\+L\+\_\+\+M\+A\+P\+P\+E\+D\+\_\+\+R\+O\+U\+KF} = 1
+ \}
+\item 
+enum \mbox{\hyperlink{classConfigurationFileReader_adfafe1ca108e6cdb42c3cda28f76628d}{M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES}} \{ {\bfseries I\+D\+E\+N\+T\+I\+TY} = 0, 
+{\bfseries E\+X\+P\+O\+N\+E\+N\+T\+I\+AL} = 1, 
+{\bfseries S\+I\+G\+M\+O\+I\+D\+AL} = 2
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConfigurationFileReader_ad85a4de7a5b87fcddb1c27de9b3ef332}{Configuration\+File\+Reader}} (string \mbox{\hyperlink{classConfigurationFileReader_a007ec73fe536b697bd200a6b0c66f6e6}{filename}})
+\item 
+\mbox{\hyperlink{classAbstractROUKF}{Abstract\+R\+O\+U\+KF}} $\ast$ \mbox{\hyperlink{classConfigurationFileReader_a2bea7f730d5caf67b9d3e1bf45072542}{get\+Instance}} ()
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classConfigurationFileReader_a1aa7cc335474bd1d15600f93e6de392b}{get\+Observations}} ()
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_a3d3b4191df51eb5e560716bc5e034f8a}{get\+N\+Parameters}} () const
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_a861fef6643dbc48d92b1eb18305a3931}{get\+N\+States}} () const
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_aaf21e598e8fcf28ed762af515946aef1}{get\+N\+Observations}} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classConfigurationFileReader_a007ec73fe536b697bd200a6b0c66f6e6}{filename}}
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classConfigurationFileReader_a556af8eae012e9d7528cbe1fd0e508d0}{observations}}
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_ad8cae04fc2c6832bb07446ca87803977}{n\+States}}
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_a669b280cc5bc410dba130ee9f14e9cac}{n\+Parameters}}
+\item 
+int \mbox{\hyperlink{classConfigurationFileReader_a5f6e229fb0ad9c7259a71977c7ead9b3}{n\+Observations}}
+\item 
+\mbox{\hyperlink{classAbstractROUKF}{Abstract\+R\+O\+U\+KF}} $\ast$ \mbox{\hyperlink{classConfigurationFileReader_a962e727eb22a7ff8d6f4b5a37cbb6a47}{roukf\+Model}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File reader class that after parsing the target file generates a Kalman filter instance with appropriate mappers. 
+
+Definition at line 20 of file Configuration\+File\+Reader.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classConfigurationFileReader_a38105d1480e7e412757a48b9f5d1850a}\label{classConfigurationFileReader_a38105d1480e7e412757a48b9f5d1850a}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES@{F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES}}
+\index{F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES@{F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES}{FILTER\_TYPES}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classConfigurationFileReader_a38105d1480e7e412757a48b9f5d1850a}{Configuration\+File\+Reader\+::\+F\+I\+L\+T\+E\+R\+\_\+\+T\+Y\+P\+ES}}}
+
+Types of filter that can be explicit in the configuration file. 
+
+Definition at line 37 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_adfafe1ca108e6cdb42c3cda28f76628d}\label{classConfigurationFileReader_adfafe1ca108e6cdb42c3cda28f76628d}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES@{M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES}}
+\index{M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES@{M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES}{MAPPER\_TYPES}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classConfigurationFileReader_adfafe1ca108e6cdb42c3cda28f76628d}{Configuration\+File\+Reader\+::\+M\+A\+P\+P\+E\+R\+\_\+\+T\+Y\+P\+ES}}}
+
+Types of mappers that can be explicit in the configuration file. 
+
+Definition at line 39 of file Configuration\+File\+Reader.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConfigurationFileReader_ad85a4de7a5b87fcddb1c27de9b3ef332}\label{classConfigurationFileReader_ad85a4de7a5b87fcddb1c27de9b3ef332}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{Configuration\+File\+Reader()}{ConfigurationFileReader()}}
+{\footnotesize\ttfamily Configuration\+File\+Reader\+::\+Configuration\+File\+Reader (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+Reader constructor. 
+
+Definition at line 24 of file Configuration\+File\+Reader.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classConfigurationFileReader_a2bea7f730d5caf67b9d3e1bf45072542}\label{classConfigurationFileReader_a2bea7f730d5caf67b9d3e1bf45072542}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{get\+Instance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAbstractROUKF}{Abstract\+R\+O\+U\+KF}} $\ast$ Configuration\+File\+Reader\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the kalman instance associated with the configuration file. \begin{DoxyReturn}{Returns}
+Kalman model. 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file Configuration\+File\+Reader.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classConfigurationFileReader_a2bea7f730d5caf67b9d3e1bf45072542_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classConfigurationFileReader_aaf21e598e8fcf28ed762af515946aef1}\label{classConfigurationFileReader_aaf21e598e8fcf28ed762af515946aef1}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!get\+N\+Observations@{get\+N\+Observations}}
+\index{get\+N\+Observations@{get\+N\+Observations}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{get\+N\+Observations()}{getNObservations()}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::get\+N\+Observations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter for {\ttfamily n\+Observations} \begin{DoxyReturn}{Returns}
+{\ttfamily n\+Observations} 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file Configuration\+File\+Reader.\+cpp.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a3d3b4191df51eb5e560716bc5e034f8a}\label{classConfigurationFileReader_a3d3b4191df51eb5e560716bc5e034f8a}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!get\+N\+Parameters@{get\+N\+Parameters}}
+\index{get\+N\+Parameters@{get\+N\+Parameters}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{get\+N\+Parameters()}{getNParameters()}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::get\+N\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter for {\ttfamily n\+Parameters} \begin{DoxyReturn}{Returns}
+{\ttfamily n\+Parameters} 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file Configuration\+File\+Reader.\+cpp.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a861fef6643dbc48d92b1eb18305a3931}\label{classConfigurationFileReader_a861fef6643dbc48d92b1eb18305a3931}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!get\+N\+States@{get\+N\+States}}
+\index{get\+N\+States@{get\+N\+States}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{get\+N\+States()}{getNStates()}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::get\+N\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter for {\ttfamily n\+States} \begin{DoxyReturn}{Returns}
+{\ttfamily n\+States} 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file Configuration\+File\+Reader.\+cpp.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a1aa7cc335474bd1d15600f93e6de392b}\label{classConfigurationFileReader_a1aa7cc335474bd1d15600f93e6de392b}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!get\+Observations@{get\+Observations}}
+\index{get\+Observations@{get\+Observations}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{get\+Observations()}{getObservations()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Configuration\+File\+Reader\+::get\+Observations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the observations readed from the configuration file after executing get\+Instance. \begin{DoxyReturn}{Returns}
+Observations vector. 
+\end{DoxyReturn}
+
+
+Definition at line 168 of file Configuration\+File\+Reader.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classConfigurationFileReader_a007ec73fe536b697bd200a6b0c66f6e6}\label{classConfigurationFileReader_a007ec73fe536b697bd200a6b0c66f6e6}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!filename@{filename}}
+\index{filename@{filename}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily string Configuration\+File\+Reader\+::filename\hspace{0.3cm}{\ttfamily [private]}}
+
+Configuration file path. 
+
+Definition at line 22 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a5f6e229fb0ad9c7259a71977c7ead9b3}\label{classConfigurationFileReader_a5f6e229fb0ad9c7259a71977c7ead9b3}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!n\+Observations@{n\+Observations}}
+\index{n\+Observations@{n\+Observations}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{n\+Observations}{nObservations}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::n\+Observations\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of observations. 
+
+Definition at line 30 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a669b280cc5bc410dba130ee9f14e9cac}\label{classConfigurationFileReader_a669b280cc5bc410dba130ee9f14e9cac}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!n\+Parameters@{n\+Parameters}}
+\index{n\+Parameters@{n\+Parameters}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{n\+Parameters}{nParameters}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::n\+Parameters\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of parameters. 
+
+Definition at line 28 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_ad8cae04fc2c6832bb07446ca87803977}\label{classConfigurationFileReader_ad8cae04fc2c6832bb07446ca87803977}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!n\+States@{n\+States}}
+\index{n\+States@{n\+States}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{n\+States}{nStates}}
+{\footnotesize\ttfamily int Configuration\+File\+Reader\+::n\+States\hspace{0.3cm}{\ttfamily [private]}}
+
+Quantity of internal states. 
+
+Definition at line 26 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a556af8eae012e9d7528cbe1fd0e508d0}\label{classConfigurationFileReader_a556af8eae012e9d7528cbe1fd0e508d0}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!observations@{observations}}
+\index{observations@{observations}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{observations}{observations}}
+{\footnotesize\ttfamily vector$<$double$>$ Configuration\+File\+Reader\+::observations\hspace{0.3cm}{\ttfamily [private]}}
+
+Observations loaded from configuration file 
+
+Definition at line 24 of file Configuration\+File\+Reader.\+h.
+
+\mbox{\Hypertarget{classConfigurationFileReader_a962e727eb22a7ff8d6f4b5a37cbb6a47}\label{classConfigurationFileReader_a962e727eb22a7ff8d6f4b5a37cbb6a47}} 
+\index{Configuration\+File\+Reader@{Configuration\+File\+Reader}!roukf\+Model@{roukf\+Model}}
+\index{roukf\+Model@{roukf\+Model}!Configuration\+File\+Reader@{Configuration\+File\+Reader}}
+\subsubsection{\texorpdfstring{roukf\+Model}{roukfModel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAbstractROUKF}{Abstract\+R\+O\+U\+KF}}$\ast$ Configuration\+File\+Reader\+::roukf\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+Singleton attribute of the generated kalman filter. 
+
+Definition at line 32 of file Configuration\+File\+Reader.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+io/Configuration\+File\+Reader.\+h\item 
+io/Configuration\+File\+Reader.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+.TH "ROUKF" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ROUKF
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ROUKF\&.h>\fP
+.PP
+Inherits \fBAbstractROUKF\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBROUKF\fP (int \fBnObservations\fP, int \fBnStates\fP, int \fBnParameters\fP, double *statesUncertainty, double *parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+.br
+.ti -1c
+.RI "\fB~ROUKF\fP ()"
+.br
+.ti -1c
+.RI "double \fBexecuteStep\fP (double *Zkhatc, forwardOp A, observationOp H)"
+.br
+.ti -1c
+.RI "double \fBexecuteStepParallel\fP (double *Zkhatc, forwardOp A, observationOp H, int seed, MPI_Comm local_comm, MPI_Comm masters_comm)"
+.br
+.ti -1c
+.RI "void \fBreset\fP (int \fBnObservations\fP, int \fBnStates\fP, int \fBnParameters\fP, double *statesUncertainty, double *parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+An example for the usage of the library:
+.PP
+.PP
+.nf
+   int (*ptA)(double*, int) = NULL;
+void (*ptH)(double*, int, double*, int) = NULL;
+ptA = &forwardOpElasticity;
+ptH = &observerOpElasticity;
+
+ //    Initialization parameters
+for (int i = 0; i < nParameters; i++) {
+   initialGuess[i] = 2\&.5E5;            // -> X0
+   parametersUncertainties[i] =1E8;    // -> U0^{-1}
+}
+ROUKF *kalmanInstance = new ROUKF(nStates, nParameters, statesUncertainties,
+parametersUncertainties);
+
+// Set initial condition
+kalmanInstance->setState(initialGuess, nParameters);
+
+for (int it = 0; it < 3000; it++) {
+   error = kalmanInstance->executeStep(observation, nStates, ptA, ptH);
+}
+
+// Get the Kalman estimation
+kalmanInstance->getState(&sol);            // -> XSol
+.fi
+.PP
+ Class that implements the reduced order unscented Kalman filter\&. 
+.PP
+Definition at line 56 of file ROUKF\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ROUKF::ROUKF (int nObservations, int nStates, int nParameters, double * statesUncertainty, double * parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInObservations\fP Quantity of observations\&. 
+.br
+\fInStates\fP Quantity of states\&. 
+.br
+\fInParameters\fP Quantity of parameters\&. 
+.br
+\fIstatesUncertainty\fP Vector with the uncertainty of each state in X\&. 
+.br
+\fIparametersUncertainty\fP Vector with the uncertainty of each parameter in Theta\&. 
+.br
+\fIsigmaDistribution\fP Type of sigmas applied to assess the unscented transform\&. 
+.RE
+.PP
+
+.PP
+Definition at line 12 of file ROUKF\&.cpp\&.
+.SS "ROUKF::~ROUKF ()"
+Void destructor\&. 
+.PP
+Definition at line 41 of file ROUKF\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "double ROUKF::executeStep (double * Zkhatc, forwardOp A, observationOp H)"
+Performs one step of the Kalman filtering process in serial execution of the sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIZkhatc\fP Current observations estimations\&. 
+.br
+\fIA\fP Forward operator\&. 
+.br
+\fIH\fP Observation operator; 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Current L2 norm of the errors across all observations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 44 of file ROUKF\&.cpp\&.
+.SS "double ROUKF::executeStepParallel (double * Zkhatc, forwardOp A, observationOp H, int seed, MPI_Comm local_comm, MPI_Comm masters_comm)"
+Performs one step of the Kalman filtering process with parallel execution of the sigma points\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIZkhatc\fP Current observations estimations\&. 
+.br
+\fIA\fP Forward operator\&. 
+.br
+\fIH\fP Observation operator; 
+.br
+\fIseed\fP Sigma point ID for the current MPI process\&. 
+.br
+\fIlocal_comm\fP Communicator of all MPI processes that solve the sigma point \fCseed\fP\&. 
+.br
+\fImasters_comm\fP Communicator of the master MPI processes of each sigma point \fCseed\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Current L2 norm of the errors across all observations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 119 of file ROUKF\&.cpp\&.
+.SS "void ROUKF::reset (int nObservations, int nStates, int nParameters, double * statesUncertainty, double * parametersUncertainty, \fBSigmaPointsGenerator::SIGMA_DISTRIBUTION\fP sigmaDistribution)"
+Returns to the initial state of the kalman filter\&. Not fully tested 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInObservations\fP Quantity of observations\&. 
+.br
+\fInStates\fP Quantity of states\&. 
+.br
+\fInParameters\fP Quantity of parameters\&. 
+.br
+\fIstatesUncertainty\fP Vector with the uncertainty of each state in X\&. 
+.br
+\fIparametersUncertainty\fP Vector with the uncertainty of each parameter in Theta\&. 
+.br
+\fIsigmaDistribution\fP Type of sigmas applied to assess the unscented transform\&. 
+.RE
+.PP
+
+.PP
+Definition at line 210 of file ROUKF\&.cpp\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

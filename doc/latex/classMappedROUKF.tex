@@ -1,0 +1,415 @@
+\hypertarget{classMappedROUKF}{}\section{Mapped\+R\+O\+U\+KF Class Reference}
+\label{classMappedROUKF}\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+
+
+{\ttfamily \#include $<$Mapped\+R\+O\+U\+K\+F.\+h$>$}
+
+
+
+Inheritance diagram for Mapped\+R\+O\+U\+KF\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classMappedROUKF__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Mapped\+R\+O\+U\+KF\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{classMappedROUKF__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classMappedROUKF_a9aa29956ea12176771fbec185601deca}{M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}} \{ {\bfseries D\+E\+F\+A\+U\+LT}, 
+{\bfseries P\+O\+S\+I\+T\+I\+VE}, 
+{\bfseries R\+A\+N\+G\+ED}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMappedROUKF_a3747b98efef856486df6428746807808}{Mapped\+R\+O\+U\+KF}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, vector$<$ double $>$ observations\+Uncertainty, vector$<$ double $>$ parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\item 
+\mbox{\hyperlink{classMappedROUKF_a0febaff07fa4b563653ed83ab9f3a753}{Mapped\+R\+O\+U\+KF}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, vector$<$ double $>$ observations\+Uncertainty, vector$<$ double $>$ parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution, \mbox{\hyperlink{classMappedROUKF_a9aa29956ea12176771fbec185601deca}{Mapped\+R\+O\+U\+K\+F\+::\+M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}} mapping\+Type, vector$<$ double $>$ mapping\+Parameters)
+\item 
+\mbox{\hyperlink{classMappedROUKF_a37d0e3963e90076ce32f41189e088ed0}{Mapped\+R\+O\+U\+KF}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, vector$<$ double $>$ observations\+Uncertainty, vector$<$ double $>$ parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution, \mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} $\ast$\mbox{\hyperlink{classMappedROUKF_a5177d0749fa9a6ce81d760267f4e7e09}{mapper}})
+\item 
+\mbox{\hyperlink{classMappedROUKF_a62754db5475cbfc001f2dc298a2092d0}{$\sim$\+Mapped\+R\+O\+U\+KF}} ()
+\item 
+double \mbox{\hyperlink{classMappedROUKF_a0a91ee2acdfa66f4f788ebcc920e112a}{execute\+Step}} (vector$<$ double $>$ Zkhatc, forward\+Op A, observation\+Op H)
+\item 
+double \mbox{\hyperlink{classMappedROUKF_ab6a3f488ef97ee3d8e11efa5aa0385c7}{execute\+Step\+Parallel}} (vector$<$ double $>$ Zkhatc, forward\+Op A, observation\+Op H, int seed, M\+P\+I\+\_\+\+Comm local\+\_\+comm, M\+P\+I\+\_\+\+Comm masters\+\_\+comm)
+\item 
+void \mbox{\hyperlink{classMappedROUKF_ad4ddf881c1ade83fe0cc2ab99ad58b7e}{reset}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, vector$<$ double $>$ observations\+Uncertainty, vector$<$ double $>$ parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\item 
+void \mbox{\hyperlink{classMappedROUKF_ad84ef097844217e5c5342e2ee8968521}{replace\+Mapper}} (\mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} $\ast$\mbox{\hyperlink{classMappedROUKF_a5177d0749fa9a6ce81d760267f4e7e09}{mapper}})
+\item 
+virtual void \mbox{\hyperlink{classMappedROUKF_aa6670e2cc9899b93b71db3f238ae93f3}{get\+Parameters}} (double $\ast$$\ast$ThetaC) override
+\item 
+virtual void \mbox{\hyperlink{classMappedROUKF_a4d3a109dc95812c8d9c6ac2a489349c2}{set\+Parameters}} (double $\ast$ThetaC) override
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} $\ast$ \mbox{\hyperlink{classMappedROUKF_a5177d0749fa9a6ce81d760267f4e7e09}{mapper}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An example for the usage of the library\+:
+
+
+\begin{DoxyCode}
+   int (*ptA)(\textcolor{keywordtype}{double}*, int) = NULL;
+void (*ptH)(\textcolor{keywordtype}{double}*, int, \textcolor{keywordtype}{double}*, int) = NULL;
+ptA = \&forwardOpElasticity;
+ptH = \&observerOpElasticity;
+
+ \textcolor{comment}{//    Initialization parameters}
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}}; i++) \{
+   initialGuess[i] = 2.5E5;            \textcolor{comment}{// -> X0}
+   parametersUncertainties[i] =1E8;    \textcolor{comment}{// -> U0^\{-1\}}
+\}
+\mbox{\hyperlink{classROUKF}{ROUKF}} *kalmanInstance = \textcolor{keyword}{new} \mbox{\hyperlink{classROUKF}{ROUKF}}(\mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{nStates}}, \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}}, statesUncertainties,
+parametersUncertainties);
+
+\textcolor{comment}{// Set initial condition}
+kalmanInstance->\mbox{\hyperlink{classAbstractROUKF_a618f4719892c0997e5f62cc23913aa12}{setState}}(initialGuess, \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}});
+
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} it = 0; it < 3000; it++) \{
+   \mbox{\hyperlink{classAbstractROUKF_a551d0b61b010efe7923358c93cbd0db5}{error}} = kalmanInstance->\mbox{\hyperlink{classROUKF_ad200c0176a1e6e443fbea55bd8905dd6}{executeStep}}(observation, \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{nStates}}, ptA, ptH);
+\}
+
+\textcolor{comment}{// Get the Kalman estimation}
+kalmanInstance->\mbox{\hyperlink{classAbstractROUKF_ad24dafa1f4cb02a38958264740588b87}{getState}}(\&sol);            \textcolor{comment}{// -> XSol}
+\end{DoxyCode}
+ Class that implements the reduced order unscented Kalman filter. 
+
+Definition at line 57 of file Mapped\+R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classMappedROUKF_a9aa29956ea12176771fbec185601deca}\label{classMappedROUKF_a9aa29956ea12176771fbec185601deca}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE@{M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}}
+\index{M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE@{M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}{MAPPING\_TYPE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classMappedROUKF_a9aa29956ea12176771fbec185601deca}{Mapped\+R\+O\+U\+K\+F\+::\+M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}}}
+
+Reparametrization type. 
+
+Definition at line 64 of file Mapped\+R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMappedROUKF_a3747b98efef856486df6428746807808}\label{classMappedROUKF_a3747b98efef856486df6428746807808}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Mapped\+R\+O\+U\+K\+F()}{MappedROUKF()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Mapped\+R\+O\+U\+K\+F\+::\+Mapped\+R\+O\+U\+KF (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{vector$<$ double $>$}]{observations\+Uncertainty,  }\item[{vector$<$ double $>$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em observations\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_a3747b98efef856486df6428746807808_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_a0febaff07fa4b563653ed83ab9f3a753}\label{classMappedROUKF_a0febaff07fa4b563653ed83ab9f3a753}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Mapped\+R\+O\+U\+K\+F()}{MappedROUKF()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Mapped\+R\+O\+U\+K\+F\+::\+Mapped\+R\+O\+U\+KF (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{vector$<$ double $>$}]{observations\+Uncertainty,  }\item[{vector$<$ double $>$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution,  }\item[{\mbox{\hyperlink{classMappedROUKF_a9aa29956ea12176771fbec185601deca}{Mapped\+R\+O\+U\+K\+F\+::\+M\+A\+P\+P\+I\+N\+G\+\_\+\+T\+Y\+PE}}}]{mapping\+Type,  }\item[{vector$<$ double $>$}]{mapping\+Parameters }\end{DoxyParamCaption})}
+
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty. The chosen mapping is the same for all parameters. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em observations\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+{\em mapping\+Type} & Type of mapping between the problem and the kalman parameters. \\
+\hline
+{\em mapping\+Parameters} & Parameters for the chosen mapping type. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 52 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_a0febaff07fa4b563653ed83ab9f3a753_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_a37d0e3963e90076ce32f41189e088ed0}\label{classMappedROUKF_a37d0e3963e90076ce32f41189e088ed0}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Mapped\+R\+O\+U\+K\+F()}{MappedROUKF()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Mapped\+R\+O\+U\+K\+F\+::\+Mapped\+R\+O\+U\+KF (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{vector$<$ double $>$}]{observations\+Uncertainty,  }\item[{vector$<$ double $>$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution,  }\item[{\mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} $\ast$}]{mapper }\end{DoxyParamCaption})}
+
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty. The mapping between the problem and the kalman parameters is given by the user customized {\ttfamily mapper} mapping function. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em observations\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+{\em mapper} & User customized mapping function between the problem and the kalman parameters. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 99 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_a37d0e3963e90076ce32f41189e088ed0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_a62754db5475cbfc001f2dc298a2092d0}\label{classMappedROUKF_a62754db5475cbfc001f2dc298a2092d0}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!````~Mapped\+R\+O\+U\+KF@{$\sim$\+Mapped\+R\+O\+U\+KF}}
+\index{````~Mapped\+R\+O\+U\+KF@{$\sim$\+Mapped\+R\+O\+U\+KF}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{$\sim$\+Mapped\+R\+O\+U\+K\+F()}{~MappedROUKF()}}
+{\footnotesize\ttfamily Mapped\+R\+O\+U\+K\+F\+::$\sim$\+Mapped\+R\+O\+U\+KF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Void destructor. 
+
+Definition at line 129 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMappedROUKF_a0a91ee2acdfa66f4f788ebcc920e112a}\label{classMappedROUKF_a0a91ee2acdfa66f4f788ebcc920e112a}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!execute\+Step@{execute\+Step}}
+\index{execute\+Step@{execute\+Step}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step()}{executeStep()}}
+{\footnotesize\ttfamily double Mapped\+R\+O\+U\+K\+F\+::execute\+Step (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process in serial execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_a0a91ee2acdfa66f4f788ebcc920e112a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_ab6a3f488ef97ee3d8e11efa5aa0385c7}\label{classMappedROUKF_ab6a3f488ef97ee3d8e11efa5aa0385c7}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!execute\+Step\+Parallel@{execute\+Step\+Parallel}}
+\index{execute\+Step\+Parallel@{execute\+Step\+Parallel}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step\+Parallel()}{executeStepParallel()}}
+{\footnotesize\ttfamily double Mapped\+R\+O\+U\+K\+F\+::execute\+Step\+Parallel (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H,  }\item[{int}]{seed,  }\item[{M\+P\+I\+\_\+\+Comm}]{local\+\_\+comm,  }\item[{M\+P\+I\+\_\+\+Comm}]{masters\+\_\+comm }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process with parallel execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+{\em seed} & Sigma point ID for the current M\+PI process. \\
+\hline
+{\em local\+\_\+comm} & Communicator of all M\+PI processes that solve the sigma point {\ttfamily seed}. \\
+\hline
+{\em masters\+\_\+comm} & Communicator of the master M\+PI processes of each sigma point {\ttfamily seed}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_ab6a3f488ef97ee3d8e11efa5aa0385c7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_aa6670e2cc9899b93b71db3f238ae93f3}\label{classMappedROUKF_aa6670e2cc9899b93b71db3f238ae93f3}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!get\+Parameters@{get\+Parameters}}
+\index{get\+Parameters@{get\+Parameters}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Parameters()}{getParameters()}}
+{\footnotesize\ttfamily void Mapped\+R\+O\+U\+K\+F\+::get\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Return the current parameter estimatives in the array {\ttfamily ThetaC}. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Current parameter estimatives. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classAbstractROUKF_a1fa0b3e17f2618789dca9319bd755830}{Abstract\+R\+O\+U\+KF}}.
+
+
+
+Definition at line 313 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_aa6670e2cc9899b93b71db3f238ae93f3_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_ad84ef097844217e5c5342e2ee8968521}\label{classMappedROUKF_ad84ef097844217e5c5342e2ee8968521}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!replace\+Mapper@{replace\+Mapper}}
+\index{replace\+Mapper@{replace\+Mapper}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{replace\+Mapper()}{replaceMapper()}}
+{\footnotesize\ttfamily void Mapped\+R\+O\+U\+K\+F\+::replace\+Mapper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} $\ast$}]{mapper }\end{DoxyParamCaption})}
+
+Replaces the current {\ttfamily mapper} for the new \mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}} instance. 
+\begin{DoxyParams}{Parameters}
+{\em mapper} & New mapper instance. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 326 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_ad84ef097844217e5c5342e2ee8968521_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_ad4ddf881c1ade83fe0cc2ab99ad58b7e}\label{classMappedROUKF_ad4ddf881c1ade83fe0cc2ab99ad58b7e}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!reset@{reset}}
+\index{reset@{reset}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Mapped\+R\+O\+U\+K\+F\+::reset (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{vector$<$ double $>$}]{observations\+Uncertainty,  }\item[{vector$<$ double $>$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Returns to the initial state of the kalman filter. Not fully tested 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em observations\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 286 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classMappedROUKF_ad4ddf881c1ade83fe0cc2ab99ad58b7e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classMappedROUKF_a4d3a109dc95812c8d9c6ac2a489349c2}\label{classMappedROUKF_a4d3a109dc95812c8d9c6ac2a489349c2}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!set\+Parameters@{set\+Parameters}}
+\index{set\+Parameters@{set\+Parameters}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+Parameters()}{setParameters()}}
+{\footnotesize\ttfamily void Mapped\+R\+O\+U\+K\+F\+::set\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets the initial parameter estimatives. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Initial parameter estimatives. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classAbstractROUKF_a8e8f7c34007a2363530f7cca4cfb0c9f}{Abstract\+R\+O\+U\+KF}}.
+
+
+
+Definition at line 320 of file Mapped\+R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classMappedROUKF_a4d3a109dc95812c8d9c6ac2a489349c2_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classMappedROUKF_a5177d0749fa9a6ce81d760267f4e7e09}\label{classMappedROUKF_a5177d0749fa9a6ce81d760267f4e7e09}} 
+\index{Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}!mapper@{mapper}}
+\index{mapper@{mapper}!Mapped\+R\+O\+U\+KF@{Mapped\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{mapper}{mapper}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCompositeParameterMapper}{Composite\+Parameter\+Mapper}}$\ast$ Mapped\+R\+O\+U\+K\+F\+::mapper\hspace{0.3cm}{\ttfamily [private]}}
+
+Mapping function between the problem parameters and the kalman parameters. 
+
+Definition at line 60 of file Mapped\+R\+O\+U\+K\+F.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mapped\+R\+O\+U\+K\+F.\+h\item 
+Mapped\+R\+O\+U\+K\+F.\+cpp\end{DoxyCompactItemize}

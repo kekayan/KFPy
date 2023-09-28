@@ -1,0 +1,78 @@
+.TH "IdentityParameterMapper" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IdentityParameterMapper
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <IdentityParameterMapper\&.h>\fP
+.PP
+Inherits \fBAbstractParameterMapper\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIdentityParameterMapper\fP ()"
+.br
+.ti -1c
+.RI "vector< double > \fBmap\fP (vector< double > problemParameters)"
+.br
+.ti -1c
+.RI "vector< double > \fBunmap\fP (vector< double > kalmanParameters)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Implementation of the \fBAbstractParameterMapper\fP class that maps the problem parameters directly in the kalman parameter space without modifications\&. 
+.PP
+Definition at line 17 of file IdentityParameterMapper\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IdentityParameterMapper::IdentityParameterMapper ()"
+Dummy constructor\&. 
+.PP
+Definition at line 10 of file IdentityParameterMapper\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "vector< double > IdentityParameterMapper::map (vector< double > problemParameters)\fC [virtual]\fP"
+Maps the problem parameters into the space of parameters where kalman filter optimize them\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIproblemParameters\fP Set of problem parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of kalman parameters 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 13 of file IdentityParameterMapper\&.cpp\&.
+.SS "vector< double > IdentityParameterMapper::unmap (vector< double > kalmanParameters)\fC [virtual]\fP"
+Maps the kalman parameters into the space of problem parameters\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkalmanParameters\fP Set of kalman parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of problem parameters\&. 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractParameterMapper\fP\&.
+.PP
+Definition at line 17 of file IdentityParameterMapper\&.cpp\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

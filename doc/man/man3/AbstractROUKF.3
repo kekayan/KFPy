@@ -1,0 +1,397 @@
+.TH "AbstractROUKF" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AbstractROUKF
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBMappedROUKF\fP, and \fBROUKF\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbstractROUKF\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~AbstractROUKF\fP ()"
+.br
+.ti -1c
+.RI "void \fBtoString\fP ()"
+.br
+.ti -1c
+.RI "bool \fBhasConverged\fP (bool isConvergenceRelative)"
+.br
+.ti -1c
+.RI "vector< double > \fBgetParametersStd\fP ()"
+.br
+.ti -1c
+.RI "void \fBgetState\fP (double **XC)"
+.br
+.ti -1c
+.RI "void \fBsetState\fP (double *XC)"
+.br
+.ti -1c
+.RI "virtual void \fBgetParameters\fP (double **ThetaC)"
+.br
+.ti -1c
+.RI "virtual void \fBsetParameters\fP (double *ThetaC)"
+.br
+.ti -1c
+.RI "void \fBgetError\fP (double **err)"
+.br
+.ti -1c
+.RI "double \fBgetObsError\fP (int numObservation)"
+.br
+.ti -1c
+.RI "int \fBgetObservations\fP () const"
+.br
+.ti -1c
+.RI "int \fBgetStates\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetMaxIterations\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetMaxIterations\fP (double \fBmaxIterations\fP)"
+.br
+.ti -1c
+.RI "double \fBgetTolerance\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetTolerance\fP (double \fBtolerance\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "arma::mat \fBX\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBTheta\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBU\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBU2\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBLX\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBLTheta\fP"
+.br
+.ti -1c
+.RI "arma::sp_mat \fBWi\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBsigma\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBDsigma\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBPa\fP"
+.br
+.ti -1c
+.RI "arma::mat \fBerror\fP"
+.br
+.ti -1c
+.RI "int \fBnObservations\fP"
+.br
+.ti -1c
+.RI "int \fBnParameters\fP"
+.br
+.ti -1c
+.RI "int \fBnStates\fP"
+.br
+.ti -1c
+.RI "double \fBalpha\fP"
+.br
+.ti -1c
+.RI "double \fBtolerance\fP"
+.br
+.ti -1c
+.RI "double \fBmaxIterations\fP"
+.br
+.ti -1c
+.RI "double \fBprevError\fP"
+.br
+.ti -1c
+.RI "double \fBcurrError\fP"
+.br
+.ti -1c
+.RI "long long int \fBcurrIt\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 28 of file AbstractROUKF\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AbstractROUKF::AbstractROUKF ()"
+Abstract constructor\&. 
+.PP
+Definition at line 10 of file AbstractROUKF\&.cpp\&.
+.SS "AbstractROUKF::~AbstractROUKF ()\fC [virtual]\fP"
+Virtual destructor\&. 
+.PP
+Definition at line 16 of file AbstractROUKF\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void AbstractROUKF::getError (double ** err)"
+Returns the error associated to each observation at the current iteration in a STL array\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIerr\fP Error associated to each observation at the current iteration\&. 
+.RE
+.PP
+
+.PP
+Definition at line 35 of file AbstractROUKF\&.cpp\&.
+.SS "double AbstractROUKF::getMaxIterations () const"
+Getter of the field \fCmaxIterations\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Field \fCmaxIterations\fP\&. 
+.RE
+.PP
+
+.PP
+Definition at line 72 of file AbstractROUKF\&.cpp\&.
+.SS "double AbstractROUKF::getObsError (int numObservation)"
+Returns the error associated to the \fCnumObservation\fP observation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInumObservation\fP Index of the observation of interest\&. 
+.RE
+.PP
+
+.PP
+Definition at line 39 of file AbstractROUKF\&.cpp\&.
+.SS "int AbstractROUKF::getObservations () const"
+Return the number of observations used in this instance of the kalman filter\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Number of observations used in this instance of the kalman filter\&. 
+.RE
+.PP
+
+.PP
+Definition at line 62 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::getParameters (double ** ThetaC)\fC [virtual]\fP"
+Getter of the field \fCTheta\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIThetaC\fP Field \fCTheta\fP converted to STL array\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBMappedROUKF\fP\&.
+.PP
+Definition at line 19 of file AbstractROUKF\&.cpp\&.
+.SS "vector< double > AbstractROUKF::getParametersStd ()"
+Returns a vector with the standard variation of each parameter at the current iteration\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Vector with the standard variation of each parameter at the current iteration\&. 
+.RE
+.PP
+
+.PP
+Definition at line 57 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::getState (double ** XC)"
+Getter of the field \fCX\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIXC\fP Field \fCX\fP converted to STL array\&. 
+.RE
+.PP
+
+.PP
+Definition at line 27 of file AbstractROUKF\&.cpp\&.
+.SS "int AbstractROUKF::getStates () const"
+Return the number of states used in this instance of the kalman filter\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Number of states used in this instance of the kalman filter\&. 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file AbstractROUKF\&.cpp\&.
+.SS "double AbstractROUKF::getTolerance () const"
+Getter of the field \fCtolerance\fP\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+Field \fCtolerance\fP\&. 
+.RE
+.PP
+
+.PP
+Definition at line 82 of file AbstractROUKF\&.cpp\&.
+.SS "bool AbstractROUKF::hasConverged (bool isConvergenceRelative)"
+Return if the filter has converged according to the specified \fCtolerance\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIisConvergenceRelative\fP If the convergence is relative or absolute\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+If it is converged\&. 
+.RE
+.PP
+
+.PP
+Definition at line 92 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::setMaxIterations (double maxIterations)"
+Setter of the field \fCmaxIterations\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImaxIterations\fP Maximum number of iterations\&. 
+.RE
+.PP
+
+.PP
+Definition at line 77 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::setParameters (double * ThetaC)\fC [virtual]\fP"
+Setter of the field \fCTheta\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIThetaC\fP Array of parameters\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBMappedROUKF\fP\&.
+.PP
+Definition at line 23 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::setState (double * XC)"
+Setter of the field \fCX\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIXC\fP Array of states\&. 
+.RE
+.PP
+
+.PP
+Definition at line 31 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::setTolerance (double tolerance)"
+Setter of the field \fCtolerance\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItolerance\fP Maximum tolerance allowed\&. 
+.RE
+.PP
+
+.PP
+Definition at line 87 of file AbstractROUKF\&.cpp\&.
+.SS "void AbstractROUKF::toString ()"
+Prints the private attributes of the \fBROUKF\fP instance\&. 
+.PP
+Definition at line 43 of file AbstractROUKF\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "double AbstractROUKF::alpha\fC [protected]\fP"
+Weight for each sigma point\&. 
+.PP
+Definition at line 63 of file AbstractROUKF\&.h\&.
+.SS "double AbstractROUKF::currError\fC [protected]\fP"
+Current iteration error\&. 
+.PP
+Definition at line 72 of file AbstractROUKF\&.h\&.
+.SS "long long int AbstractROUKF::currIt\fC [protected]\fP"
+Current iteration\&. 
+.PP
+Definition at line 74 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::Dsigma\fC [protected]\fP"
+Matrix with sigma points weighted as rows\&. 
+.PP
+Definition at line 49 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::error\fC [protected]\fP"
+Vector with the observations errors after the last iteration\&. 
+.PP
+Definition at line 54 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::LTheta\fC [protected]\fP"
+L part of the covariance matrix after LU factorization concerning to the parameter part of the extended state vector\&. 
+.PP
+Definition at line 42 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::LX\fC [protected]\fP"
+L part of the covariance matrix after LU factorization concerning to the state part of the extended state vector\&. 
+.PP
+Definition at line 40 of file AbstractROUKF\&.h\&.
+.SS "double AbstractROUKF::maxIterations\fC [protected]\fP"
+Maximum number of iterations\&. 
+.PP
+Definition at line 68 of file AbstractROUKF\&.h\&.
+.SS "int AbstractROUKF::nObservations\fC [protected]\fP"
+Quantity of observations\&. 
+.PP
+Definition at line 57 of file AbstractROUKF\&.h\&.
+.SS "int AbstractROUKF::nParameters\fC [protected]\fP"
+Quantity of parameters\&. 
+.PP
+Definition at line 59 of file AbstractROUKF\&.h\&.
+.SS "int AbstractROUKF::nStates\fC [protected]\fP"
+Quantity of states\&. 
+.PP
+Definition at line 61 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::Pa\fC [protected]\fP"
+Matrix \fCsigma\fP times \fCDsigma\fP \&. 
+.PP
+Definition at line 51 of file AbstractROUKF\&.h\&.
+.SS "double AbstractROUKF::prevError\fC [protected]\fP"
+Previous iteration error\&. 
+.PP
+Definition at line 70 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::sigma\fC [protected]\fP"
+Matrix with sigma points as columns\&. 
+.PP
+Definition at line 47 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::Theta\fC [protected]\fP"
+Parameters vector\&. 
+.PP
+Definition at line 34 of file AbstractROUKF\&.h\&.
+.SS "double AbstractROUKF::tolerance\fC [protected]\fP"
+Convergence tolerance\&. 
+.PP
+Definition at line 66 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::U\fC [protected]\fP"
+U part of the covariance matrix after LU factorization\&. 
+.PP
+Definition at line 36 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::U2\fC [protected]\fP"
+U squared\&. 
+.PP
+Definition at line 38 of file AbstractROUKF\&.h\&.
+.SS "arma::sp_mat AbstractROUKF::Wi\fC [protected]\fP"
+Observations confidence matrix\&. 
+.PP
+Definition at line 44 of file AbstractROUKF\&.h\&.
+.SS "arma::mat AbstractROUKF::X\fC [protected]\fP"
+States vector\&. 
+.PP
+Definition at line 32 of file AbstractROUKF\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.

@@ -1,0 +1,554 @@
+\hypertarget{classAbstractROUKF}{}\section{Abstract\+R\+O\+U\+KF Class Reference}
+\label{classAbstractROUKF}\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+
+
+Inheritance diagram for Abstract\+R\+O\+U\+KF\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{classAbstractROUKF__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAbstractROUKF_afbeabf5f80a3cd9dcbd9c551cde20cfe}{Abstract\+R\+O\+U\+KF}} ()
+\item 
+virtual \mbox{\hyperlink{classAbstractROUKF_a6b02fbadd6db005bb85fc364fbe5d7f9}{$\sim$\+Abstract\+R\+O\+U\+KF}} ()
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_a663975374b647bd1ce1b4dc54e937de9}{to\+String}} ()
+\item 
+bool \mbox{\hyperlink{classAbstractROUKF_a7f9deb98273cfc2282e2902cdf716bff}{has\+Converged}} (bool is\+Convergence\+Relative)
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{classAbstractROUKF_a210b89fa43dd6c6f658518d24dcc9c9c}{get\+Parameters\+Std}} ()
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_ad24dafa1f4cb02a38958264740588b87}{get\+State}} (double $\ast$$\ast$XC)
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_a618f4719892c0997e5f62cc23913aa12}{set\+State}} (double $\ast$XC)
+\item 
+virtual void \mbox{\hyperlink{classAbstractROUKF_a1fa0b3e17f2618789dca9319bd755830}{get\+Parameters}} (double $\ast$$\ast$ThetaC)
+\item 
+virtual void \mbox{\hyperlink{classAbstractROUKF_a8e8f7c34007a2363530f7cca4cfb0c9f}{set\+Parameters}} (double $\ast$ThetaC)
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_aff309e6f34502fe604b1130a4185cb56}{get\+Error}} (double $\ast$$\ast$err)
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_ae3daccd71ef910705d340567a22abdff}{get\+Obs\+Error}} (int num\+Observation)
+\item 
+int \mbox{\hyperlink{classAbstractROUKF_af26c89f7ed4191cbf41d945808d0daee}{get\+Observations}} () const
+\item 
+int \mbox{\hyperlink{classAbstractROUKF_a904fa28784c0bf5ed96502b6bea74346}{get\+States}} () const
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_ac1d872b69fb061600b259d13b2add657}{get\+Max\+Iterations}} () const
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_affbf7bade0ebe7441377f88e6461e84f}{set\+Max\+Iterations}} (double \mbox{\hyperlink{classAbstractROUKF_a268b49ab648ee8013b15ef5127d4fef1}{max\+Iterations}})
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_a408197857ee4f8084170a8240db1eb29}{get\+Tolerance}} () const
+\item 
+void \mbox{\hyperlink{classAbstractROUKF_afc0c756daaba8dbaa4da1e38c97a16e2}{set\+Tolerance}} (double \mbox{\hyperlink{classAbstractROUKF_aecf6562ecf3ea0bef0d4875cae682b11}{tolerance}})
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_afdb4deed00416489ced1729c22a317f2}{X}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a09460cd2349481e27e68718f47ad354b}{Theta}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a750d4ddf5b83c1ecd319a6b1a8f9ffb5}{U}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a98dd192be29bfa224abb3fe21f60ac92}{U2}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a5dfab9d5823117885e01db2e591eeb59}{LX}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a5c4be89d8f4d3c6ce73e05242bbd1d5e}{L\+Theta}}
+\item 
+arma\+::sp\+\_\+mat \mbox{\hyperlink{classAbstractROUKF_a0bb579dc353724d64ce50df76b5ecacb}{Wi}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a1d02b594a134c2644c0b64889c9ab34a}{sigma}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a7f0b59c793a213079124cfce6284e58c}{Dsigma}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_ab3c7c4f238cedee2784a450cd10eb98b}{Pa}}
+\item 
+arma\+::mat \mbox{\hyperlink{classAbstractROUKF_a551d0b61b010efe7923358c93cbd0db5}{error}}
+\item 
+int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}
+\item 
+int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}
+\item 
+int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_ada380355583bc96844c1f1bb0e202a40}{alpha}}
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_aecf6562ecf3ea0bef0d4875cae682b11}{tolerance}}
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_a268b49ab648ee8013b15ef5127d4fef1}{max\+Iterations}}
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_a699ef3cc8c3c5fa650d065e6dd77e12a}{prev\+Error}}
+\item 
+double \mbox{\hyperlink{classAbstractROUKF_aaf3e4ce3407d3ca6ad1b06ba2592a6ce}{curr\+Error}}
+\item 
+long long int \mbox{\hyperlink{classAbstractROUKF_a8e7ff4187e5808a032fd97d1b8a024b3}{curr\+It}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAbstractROUKF_afbeabf5f80a3cd9dcbd9c551cde20cfe}\label{classAbstractROUKF_afbeabf5f80a3cd9dcbd9c551cde20cfe}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Abstract\+R\+O\+U\+K\+F()}{AbstractROUKF()}}
+{\footnotesize\ttfamily Abstract\+R\+O\+U\+K\+F\+::\+Abstract\+R\+O\+U\+KF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Abstract constructor. 
+
+Definition at line 10 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a6b02fbadd6db005bb85fc364fbe5d7f9}\label{classAbstractROUKF_a6b02fbadd6db005bb85fc364fbe5d7f9}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!````~Abstract\+R\+O\+U\+KF@{$\sim$\+Abstract\+R\+O\+U\+KF}}
+\index{````~Abstract\+R\+O\+U\+KF@{$\sim$\+Abstract\+R\+O\+U\+KF}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{$\sim$\+Abstract\+R\+O\+U\+K\+F()}{~AbstractROUKF()}}
+{\footnotesize\ttfamily Abstract\+R\+O\+U\+K\+F\+::$\sim$\+Abstract\+R\+O\+U\+KF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Virtual destructor. 
+
+Definition at line 16 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classAbstractROUKF_aff309e6f34502fe604b1130a4185cb56}\label{classAbstractROUKF_aff309e6f34502fe604b1130a4185cb56}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Error@{get\+Error}}
+\index{get\+Error@{get\+Error}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Error()}{getError()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::get\+Error (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{err }\end{DoxyParamCaption})}
+
+Returns the error associated to each observation at the current iteration in a S\+TL array. 
+\begin{DoxyParams}{Parameters}
+{\em err} & Error associated to each observation at the current iteration. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 35 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_ac1d872b69fb061600b259d13b2add657}\label{classAbstractROUKF_ac1d872b69fb061600b259d13b2add657}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Max\+Iterations@{get\+Max\+Iterations}}
+\index{get\+Max\+Iterations@{get\+Max\+Iterations}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Max\+Iterations()}{getMaxIterations()}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::get\+Max\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter of the field {\ttfamily max\+Iterations}. \begin{DoxyReturn}{Returns}
+Field {\ttfamily max\+Iterations}. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_ae3daccd71ef910705d340567a22abdff}\label{classAbstractROUKF_ae3daccd71ef910705d340567a22abdff}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Obs\+Error@{get\+Obs\+Error}}
+\index{get\+Obs\+Error@{get\+Obs\+Error}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Obs\+Error()}{getObsError()}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::get\+Obs\+Error (\begin{DoxyParamCaption}\item[{int}]{num\+Observation }\end{DoxyParamCaption})}
+
+Returns the error associated to the {\ttfamily num\+Observation} observation. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Observation} & Index of the observation of interest. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_af26c89f7ed4191cbf41d945808d0daee}\label{classAbstractROUKF_af26c89f7ed4191cbf41d945808d0daee}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Observations@{get\+Observations}}
+\index{get\+Observations@{get\+Observations}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Observations()}{getObservations()}}
+{\footnotesize\ttfamily int Abstract\+R\+O\+U\+K\+F\+::get\+Observations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Return the number of observations used in this instance of the kalman filter. \begin{DoxyReturn}{Returns}
+Number of observations used in this instance of the kalman filter. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a1fa0b3e17f2618789dca9319bd755830}\label{classAbstractROUKF_a1fa0b3e17f2618789dca9319bd755830}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Parameters@{get\+Parameters}}
+\index{get\+Parameters@{get\+Parameters}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Parameters()}{getParameters()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::get\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Getter of the field {\ttfamily Theta}. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Field {\ttfamily Theta} converted to S\+TL array. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classMappedROUKF_aa6670e2cc9899b93b71db3f238ae93f3}{Mapped\+R\+O\+U\+KF}}.
+
+
+
+Definition at line 19 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a210b89fa43dd6c6f658518d24dcc9c9c}\label{classAbstractROUKF_a210b89fa43dd6c6f658518d24dcc9c9c}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Parameters\+Std@{get\+Parameters\+Std}}
+\index{get\+Parameters\+Std@{get\+Parameters\+Std}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Parameters\+Std()}{getParametersStd()}}
+{\footnotesize\ttfamily vector$<$ double $>$ Abstract\+R\+O\+U\+K\+F\+::get\+Parameters\+Std (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a vector with the standard variation of each parameter at the current iteration. \begin{DoxyReturn}{Returns}
+Vector with the standard variation of each parameter at the current iteration. 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_ad24dafa1f4cb02a38958264740588b87}\label{classAbstractROUKF_ad24dafa1f4cb02a38958264740588b87}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::get\+State (\begin{DoxyParamCaption}\item[{double $\ast$$\ast$}]{XC }\end{DoxyParamCaption})}
+
+Getter of the field {\ttfamily X}. 
+\begin{DoxyParams}{Parameters}
+{\em XC} & Field {\ttfamily X} converted to S\+TL array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a904fa28784c0bf5ed96502b6bea74346}\label{classAbstractROUKF_a904fa28784c0bf5ed96502b6bea74346}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+States@{get\+States}}
+\index{get\+States@{get\+States}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+States()}{getStates()}}
+{\footnotesize\ttfamily int Abstract\+R\+O\+U\+K\+F\+::get\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Return the number of states used in this instance of the kalman filter. \begin{DoxyReturn}{Returns}
+Number of states used in this instance of the kalman filter. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a408197857ee4f8084170a8240db1eb29}\label{classAbstractROUKF_a408197857ee4f8084170a8240db1eb29}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!get\+Tolerance@{get\+Tolerance}}
+\index{get\+Tolerance@{get\+Tolerance}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{get\+Tolerance()}{getTolerance()}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::get\+Tolerance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Getter of the field {\ttfamily tolerance}. \begin{DoxyReturn}{Returns}
+Field {\ttfamily tolerance}. 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a7f9deb98273cfc2282e2902cdf716bff}\label{classAbstractROUKF_a7f9deb98273cfc2282e2902cdf716bff}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!has\+Converged@{has\+Converged}}
+\index{has\+Converged@{has\+Converged}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{has\+Converged()}{hasConverged()}}
+{\footnotesize\ttfamily bool Abstract\+R\+O\+U\+K\+F\+::has\+Converged (\begin{DoxyParamCaption}\item[{bool}]{is\+Convergence\+Relative }\end{DoxyParamCaption})}
+
+Return if the filter has converged according to the specified {\ttfamily tolerance}. 
+\begin{DoxyParams}{Parameters}
+{\em is\+Convergence\+Relative} & If the convergence is relative or absolute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If it is converged. 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_affbf7bade0ebe7441377f88e6461e84f}\label{classAbstractROUKF_affbf7bade0ebe7441377f88e6461e84f}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!set\+Max\+Iterations@{set\+Max\+Iterations}}
+\index{set\+Max\+Iterations@{set\+Max\+Iterations}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+Max\+Iterations()}{setMaxIterations()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::set\+Max\+Iterations (\begin{DoxyParamCaption}\item[{double}]{max\+Iterations }\end{DoxyParamCaption})}
+
+Setter of the field {\ttfamily max\+Iterations}. 
+\begin{DoxyParams}{Parameters}
+{\em max\+Iterations} & Maximum number of iterations. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a8e8f7c34007a2363530f7cca4cfb0c9f}\label{classAbstractROUKF_a8e8f7c34007a2363530f7cca4cfb0c9f}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!set\+Parameters@{set\+Parameters}}
+\index{set\+Parameters@{set\+Parameters}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+Parameters()}{setParameters()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::set\+Parameters (\begin{DoxyParamCaption}\item[{double $\ast$}]{ThetaC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Setter of the field {\ttfamily Theta}. 
+\begin{DoxyParams}{Parameters}
+{\em ThetaC} & Array of parameters. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classMappedROUKF_a4d3a109dc95812c8d9c6ac2a489349c2}{Mapped\+R\+O\+U\+KF}}.
+
+
+
+Definition at line 23 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a618f4719892c0997e5f62cc23913aa12}\label{classAbstractROUKF_a618f4719892c0997e5f62cc23913aa12}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::set\+State (\begin{DoxyParamCaption}\item[{double $\ast$}]{XC }\end{DoxyParamCaption})}
+
+Setter of the field {\ttfamily X}. 
+\begin{DoxyParams}{Parameters}
+{\em XC} & Array of states. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_afc0c756daaba8dbaa4da1e38c97a16e2}\label{classAbstractROUKF_afc0c756daaba8dbaa4da1e38c97a16e2}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!set\+Tolerance@{set\+Tolerance}}
+\index{set\+Tolerance@{set\+Tolerance}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{set\+Tolerance()}{setTolerance()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::set\+Tolerance (\begin{DoxyParamCaption}\item[{double}]{tolerance }\end{DoxyParamCaption})}
+
+Setter of the field {\ttfamily tolerance}. 
+\begin{DoxyParams}{Parameters}
+{\em tolerance} & Maximum tolerance allowed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 87 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classAbstractROUKF_a663975374b647bd1ce1b4dc54e937de9}\label{classAbstractROUKF_a663975374b647bd1ce1b4dc54e937de9}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily void Abstract\+R\+O\+U\+K\+F\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints the private attributes of the \mbox{\hyperlink{classROUKF}{R\+O\+U\+KF}} instance. 
+
+Definition at line 43 of file Abstract\+R\+O\+U\+K\+F.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classAbstractROUKF_ada380355583bc96844c1f1bb0e202a40}\label{classAbstractROUKF_ada380355583bc96844c1f1bb0e202a40}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!alpha@{alpha}}
+\index{alpha@{alpha}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::alpha\hspace{0.3cm}{\ttfamily [protected]}}
+
+Weight for each sigma point. 
+
+Definition at line 63 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_aaf3e4ce3407d3ca6ad1b06ba2592a6ce}\label{classAbstractROUKF_aaf3e4ce3407d3ca6ad1b06ba2592a6ce}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!curr\+Error@{curr\+Error}}
+\index{curr\+Error@{curr\+Error}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{curr\+Error}{currError}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::curr\+Error\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current iteration error. 
+
+Definition at line 72 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a8e7ff4187e5808a032fd97d1b8a024b3}\label{classAbstractROUKF_a8e7ff4187e5808a032fd97d1b8a024b3}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!curr\+It@{curr\+It}}
+\index{curr\+It@{curr\+It}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{curr\+It}{currIt}}
+{\footnotesize\ttfamily long long int Abstract\+R\+O\+U\+K\+F\+::curr\+It\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current iteration. 
+
+Definition at line 74 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a7f0b59c793a213079124cfce6284e58c}\label{classAbstractROUKF_a7f0b59c793a213079124cfce6284e58c}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Dsigma@{Dsigma}}
+\index{Dsigma@{Dsigma}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Dsigma}{Dsigma}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+Dsigma\hspace{0.3cm}{\ttfamily [protected]}}
+
+Matrix with sigma points weighted as rows. 
+
+Definition at line 49 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a551d0b61b010efe7923358c93cbd0db5}\label{classAbstractROUKF_a551d0b61b010efe7923358c93cbd0db5}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!error@{error}}
+\index{error@{error}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::error\hspace{0.3cm}{\ttfamily [protected]}}
+
+Vector with the observations errors after the last iteration. 
+
+Definition at line 54 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a5c4be89d8f4d3c6ce73e05242bbd1d5e}\label{classAbstractROUKF_a5c4be89d8f4d3c6ce73e05242bbd1d5e}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!L\+Theta@{L\+Theta}}
+\index{L\+Theta@{L\+Theta}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{L\+Theta}{LTheta}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+L\+Theta\hspace{0.3cm}{\ttfamily [protected]}}
+
+L part of the covariance matrix after LU factorization concerning to the parameter part of the extended state vector. 
+
+Definition at line 42 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a5dfab9d5823117885e01db2e591eeb59}\label{classAbstractROUKF_a5dfab9d5823117885e01db2e591eeb59}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!LX@{LX}}
+\index{LX@{LX}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{LX}{LX}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+LX\hspace{0.3cm}{\ttfamily [protected]}}
+
+L part of the covariance matrix after LU factorization concerning to the state part of the extended state vector. 
+
+Definition at line 40 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a268b49ab648ee8013b15ef5127d4fef1}\label{classAbstractROUKF_a268b49ab648ee8013b15ef5127d4fef1}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!max\+Iterations@{max\+Iterations}}
+\index{max\+Iterations@{max\+Iterations}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{max\+Iterations}{maxIterations}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::max\+Iterations\hspace{0.3cm}{\ttfamily [protected]}}
+
+Maximum number of iterations. 
+
+Definition at line 68 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}\label{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!n\+Observations@{n\+Observations}}
+\index{n\+Observations@{n\+Observations}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+Observations}{nObservations}}
+{\footnotesize\ttfamily int Abstract\+R\+O\+U\+K\+F\+::n\+Observations\hspace{0.3cm}{\ttfamily [protected]}}
+
+Quantity of observations. 
+
+Definition at line 57 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}\label{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!n\+Parameters@{n\+Parameters}}
+\index{n\+Parameters@{n\+Parameters}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+Parameters}{nParameters}}
+{\footnotesize\ttfamily int Abstract\+R\+O\+U\+K\+F\+::n\+Parameters\hspace{0.3cm}{\ttfamily [protected]}}
+
+Quantity of parameters. 
+
+Definition at line 59 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}\label{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!n\+States@{n\+States}}
+\index{n\+States@{n\+States}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{n\+States}{nStates}}
+{\footnotesize\ttfamily int Abstract\+R\+O\+U\+K\+F\+::n\+States\hspace{0.3cm}{\ttfamily [protected]}}
+
+Quantity of states. 
+
+Definition at line 61 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_ab3c7c4f238cedee2784a450cd10eb98b}\label{classAbstractROUKF_ab3c7c4f238cedee2784a450cd10eb98b}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Pa@{Pa}}
+\index{Pa@{Pa}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Pa}{Pa}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+Pa\hspace{0.3cm}{\ttfamily [protected]}}
+
+Matrix {\ttfamily sigma} times {\ttfamily Dsigma} . 
+
+Definition at line 51 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a699ef3cc8c3c5fa650d065e6dd77e12a}\label{classAbstractROUKF_a699ef3cc8c3c5fa650d065e6dd77e12a}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!prev\+Error@{prev\+Error}}
+\index{prev\+Error@{prev\+Error}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{prev\+Error}{prevError}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::prev\+Error\hspace{0.3cm}{\ttfamily [protected]}}
+
+Previous iteration error. 
+
+Definition at line 70 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a1d02b594a134c2644c0b64889c9ab34a}\label{classAbstractROUKF_a1d02b594a134c2644c0b64889c9ab34a}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!sigma@{sigma}}
+\index{sigma@{sigma}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{sigma}{sigma}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::sigma\hspace{0.3cm}{\ttfamily [protected]}}
+
+Matrix with sigma points as columns. 
+
+Definition at line 47 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a09460cd2349481e27e68718f47ad354b}\label{classAbstractROUKF_a09460cd2349481e27e68718f47ad354b}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Theta@{Theta}}
+\index{Theta@{Theta}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Theta}{Theta}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+Theta\hspace{0.3cm}{\ttfamily [protected]}}
+
+Parameters vector. 
+
+Definition at line 34 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_aecf6562ecf3ea0bef0d4875cae682b11}\label{classAbstractROUKF_aecf6562ecf3ea0bef0d4875cae682b11}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!tolerance@{tolerance}}
+\index{tolerance@{tolerance}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{tolerance}{tolerance}}
+{\footnotesize\ttfamily double Abstract\+R\+O\+U\+K\+F\+::tolerance\hspace{0.3cm}{\ttfamily [protected]}}
+
+Convergence tolerance. 
+
+Definition at line 66 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a750d4ddf5b83c1ecd319a6b1a8f9ffb5}\label{classAbstractROUKF_a750d4ddf5b83c1ecd319a6b1a8f9ffb5}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!U@{U}}
+\index{U@{U}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{U}{U}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::U\hspace{0.3cm}{\ttfamily [protected]}}
+
+U part of the covariance matrix after LU factorization. 
+
+Definition at line 36 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a98dd192be29bfa224abb3fe21f60ac92}\label{classAbstractROUKF_a98dd192be29bfa224abb3fe21f60ac92}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!U2@{U2}}
+\index{U2@{U2}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{U2}{U2}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::\+U2\hspace{0.3cm}{\ttfamily [protected]}}
+
+U squared. 
+
+Definition at line 38 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_a0bb579dc353724d64ce50df76b5ecacb}\label{classAbstractROUKF_a0bb579dc353724d64ce50df76b5ecacb}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!Wi@{Wi}}
+\index{Wi@{Wi}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{Wi}{Wi}}
+{\footnotesize\ttfamily arma\+::sp\+\_\+mat Abstract\+R\+O\+U\+K\+F\+::\+Wi\hspace{0.3cm}{\ttfamily [protected]}}
+
+Observations confidence matrix. 
+
+Definition at line 44 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+\mbox{\Hypertarget{classAbstractROUKF_afdb4deed00416489ced1729c22a317f2}\label{classAbstractROUKF_afdb4deed00416489ced1729c22a317f2}} 
+\index{Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}!X@{X}}
+\index{X@{X}!Abstract\+R\+O\+U\+KF@{Abstract\+R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily arma\+::mat Abstract\+R\+O\+U\+K\+F\+::X\hspace{0.3cm}{\ttfamily [protected]}}
+
+States vector. 
+
+Definition at line 32 of file Abstract\+R\+O\+U\+K\+F.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Abstract\+R\+O\+U\+K\+F.\+h\item 
+Abstract\+R\+O\+U\+K\+F.\+cpp\end{DoxyCompactItemize}

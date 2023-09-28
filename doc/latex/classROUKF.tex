@@ -1,0 +1,208 @@
+\hypertarget{classROUKF}{}\section{R\+O\+U\+KF Class Reference}
+\label{classROUKF}\index{R\+O\+U\+KF@{R\+O\+U\+KF}}
+
+
+{\ttfamily \#include $<$R\+O\+U\+K\+F.\+h$>$}
+
+
+
+Inheritance diagram for R\+O\+U\+KF\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classROUKF__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for R\+O\+U\+KF\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classROUKF__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classROUKF_a16fd0fbe99e00745254f56052ad44f3f}{R\+O\+U\+KF}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, double $\ast$states\+Uncertainty, double $\ast$parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\item 
+\mbox{\hyperlink{classROUKF_aefba1ab1ab07bed45f43897c19f4f0a2}{$\sim$\+R\+O\+U\+KF}} ()
+\item 
+double \mbox{\hyperlink{classROUKF_ad200c0176a1e6e443fbea55bd8905dd6}{execute\+Step}} (double $\ast$Zkhatc, forward\+Op A, observation\+Op H)
+\item 
+double \mbox{\hyperlink{classROUKF_a0494bdc8ad1870dabb80581794dccc58}{execute\+Step\+Parallel}} (double $\ast$Zkhatc, forward\+Op A, observation\+Op H, int seed, M\+P\+I\+\_\+\+Comm local\+\_\+comm, M\+P\+I\+\_\+\+Comm masters\+\_\+comm)
+\item 
+void \mbox{\hyperlink{classROUKF_add2b1ded99b16046f706557a2129d41a}{reset}} (int \mbox{\hyperlink{classAbstractROUKF_a4f6403f7fd2fac691e4ac516f47c0a06}{n\+Observations}}, int \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{n\+States}}, int \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{n\+Parameters}}, double $\ast$states\+Uncertainty, double $\ast$parameters\+Uncertainty, \mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}} sigma\+Distribution)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An example for the usage of the library\+:
+
+
+\begin{DoxyCode}
+   int (*ptA)(\textcolor{keywordtype}{double}*, int) = NULL;
+void (*ptH)(\textcolor{keywordtype}{double}*, int, \textcolor{keywordtype}{double}*, int) = NULL;
+ptA = \&forwardOpElasticity;
+ptH = \&observerOpElasticity;
+
+ \textcolor{comment}{//    Initialization parameters}
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}}; i++) \{
+   initialGuess[i] = 2.5E5;            \textcolor{comment}{// -> X0}
+   parametersUncertainties[i] =1E8;    \textcolor{comment}{// -> U0^\{-1\}}
+\}
+\mbox{\hyperlink{classROUKF}{ROUKF}} *kalmanInstance = \textcolor{keyword}{new} \mbox{\hyperlink{classROUKF_a16fd0fbe99e00745254f56052ad44f3f}{ROUKF}}(\mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{nStates}}, \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}}, statesUncertainties,
+parametersUncertainties);
+
+\textcolor{comment}{// Set initial condition}
+kalmanInstance->\mbox{\hyperlink{classAbstractROUKF_a618f4719892c0997e5f62cc23913aa12}{setState}}(initialGuess, \mbox{\hyperlink{classAbstractROUKF_a488f708dcdd66758cd879421cd454846}{nParameters}});
+
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} it = 0; it < 3000; it++) \{
+   \mbox{\hyperlink{classAbstractROUKF_a551d0b61b010efe7923358c93cbd0db5}{error}} = kalmanInstance->\mbox{\hyperlink{classROUKF_ad200c0176a1e6e443fbea55bd8905dd6}{executeStep}}(observation, \mbox{\hyperlink{classAbstractROUKF_af9ce480feb5d97761f20fdd546878aff}{nStates}}, ptA, ptH);
+\}
+
+\textcolor{comment}{// Get the Kalman estimation}
+kalmanInstance->\mbox{\hyperlink{classAbstractROUKF_ad24dafa1f4cb02a38958264740588b87}{getState}}(\&sol);            \textcolor{comment}{// -> XSol}
+\end{DoxyCode}
+ Class that implements the reduced order unscented Kalman filter. 
+
+Definition at line 56 of file R\+O\+U\+K\+F.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classROUKF_a16fd0fbe99e00745254f56052ad44f3f}\label{classROUKF_a16fd0fbe99e00745254f56052ad44f3f}} 
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{R\+O\+U\+K\+F()}{ROUKF()}}
+{\footnotesize\ttfamily R\+O\+U\+K\+F\+::\+R\+O\+U\+KF (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{double $\ast$}]{states\+Uncertainty,  }\item[{double $\ast$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Creates the covariance matrixes and sigma points associated with the extended vector X and their uncertainty. 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em states\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{classROUKF_a16fd0fbe99e00745254f56052ad44f3f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classROUKF_aefba1ab1ab07bed45f43897c19f4f0a2}\label{classROUKF_aefba1ab1ab07bed45f43897c19f4f0a2}} 
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!````~R\+O\+U\+KF@{$\sim$\+R\+O\+U\+KF}}
+\index{````~R\+O\+U\+KF@{$\sim$\+R\+O\+U\+KF}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{$\sim$\+R\+O\+U\+K\+F()}{~ROUKF()}}
+{\footnotesize\ttfamily R\+O\+U\+K\+F\+::$\sim$\+R\+O\+U\+KF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Void destructor. 
+
+Definition at line 41 of file R\+O\+U\+K\+F.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classROUKF_ad200c0176a1e6e443fbea55bd8905dd6}\label{classROUKF_ad200c0176a1e6e443fbea55bd8905dd6}} 
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!execute\+Step@{execute\+Step}}
+\index{execute\+Step@{execute\+Step}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step()}{executeStep()}}
+{\footnotesize\ttfamily double R\+O\+U\+K\+F\+::execute\+Step (\begin{DoxyParamCaption}\item[{double $\ast$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process in serial execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classROUKF_a0494bdc8ad1870dabb80581794dccc58}\label{classROUKF_a0494bdc8ad1870dabb80581794dccc58}} 
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!execute\+Step\+Parallel@{execute\+Step\+Parallel}}
+\index{execute\+Step\+Parallel@{execute\+Step\+Parallel}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{execute\+Step\+Parallel()}{executeStepParallel()}}
+{\footnotesize\ttfamily double R\+O\+U\+K\+F\+::execute\+Step\+Parallel (\begin{DoxyParamCaption}\item[{double $\ast$}]{Zkhatc,  }\item[{forward\+Op}]{A,  }\item[{observation\+Op}]{H,  }\item[{int}]{seed,  }\item[{M\+P\+I\+\_\+\+Comm}]{local\+\_\+comm,  }\item[{M\+P\+I\+\_\+\+Comm}]{masters\+\_\+comm }\end{DoxyParamCaption})}
+
+Performs one step of the Kalman filtering process with parallel execution of the sigma points. 
+\begin{DoxyParams}{Parameters}
+{\em Zkhatc} & Current observations estimations. \\
+\hline
+{\em A} & Forward operator. \\
+\hline
+{\em H} & Observation operator; \\
+\hline
+{\em seed} & Sigma point ID for the current M\+PI process. \\
+\hline
+{\em local\+\_\+comm} & Communicator of all M\+PI processes that solve the sigma point {\ttfamily seed}. \\
+\hline
+{\em masters\+\_\+comm} & Communicator of the master M\+PI processes of each sigma point {\ttfamily seed}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current L2 norm of the errors across all observations. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file R\+O\+U\+K\+F.\+cpp.
+
+\mbox{\Hypertarget{classROUKF_add2b1ded99b16046f706557a2129d41a}\label{classROUKF_add2b1ded99b16046f706557a2129d41a}} 
+\index{R\+O\+U\+KF@{R\+O\+U\+KF}!reset@{reset}}
+\index{reset@{reset}!R\+O\+U\+KF@{R\+O\+U\+KF}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void R\+O\+U\+K\+F\+::reset (\begin{DoxyParamCaption}\item[{int}]{n\+Observations,  }\item[{int}]{n\+States,  }\item[{int}]{n\+Parameters,  }\item[{double $\ast$}]{states\+Uncertainty,  }\item[{double $\ast$}]{parameters\+Uncertainty,  }\item[{\mbox{\hyperlink{classSigmaPointsGenerator_ad6f9474c0313425a10add120e0acf944}{Sigma\+Points\+Generator\+::\+S\+I\+G\+M\+A\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+ON}}}]{sigma\+Distribution }\end{DoxyParamCaption})}
+
+Returns to the initial state of the kalman filter. Not fully tested 
+\begin{DoxyParams}{Parameters}
+{\em n\+Observations} & Quantity of observations. \\
+\hline
+{\em n\+States} & Quantity of states. \\
+\hline
+{\em n\+Parameters} & Quantity of parameters. \\
+\hline
+{\em states\+Uncertainty} & Vector with the uncertainty of each state in X. \\
+\hline
+{\em parameters\+Uncertainty} & Vector with the uncertainty of each parameter in Theta. \\
+\hline
+{\em sigma\+Distribution} & Type of sigmas applied to assess the unscented transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 210 of file R\+O\+U\+K\+F.\+cpp.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classROUKF_add2b1ded99b16046f706557a2129d41a_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+R\+O\+U\+K\+F.\+h\item 
+R\+O\+U\+K\+F.\+cpp\end{DoxyCompactItemize}

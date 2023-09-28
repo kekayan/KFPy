@@ -1,0 +1,74 @@
+.TH "AbstractParameterMapper" 3 "Fri Mar 23 2018" "Version 1.0" "A Kalman Library (AKL)" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AbstractParameterMapper
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <AbstractParameterMapper\&.h>\fP
+.PP
+Inherited by \fBCompositeParameterMapper\fP, \fBExponentialParameterMapper\fP, \fBIdentityParameterMapper\fP, and \fBSigmoidParameterMapper\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbstractParameterMapper\fP ()"
+.br
+.ti -1c
+.RI "virtual vector< double > \fBmap\fP (vector< double > problemParameter)=0"
+.br
+.ti -1c
+.RI "virtual vector< double > \fBunmap\fP (vector< double > kalmanParameter)=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Abstract class that model the functions required for a parameters mapping function\&. The mapping functions will map the problem parameters into a better-behaved space of parameter for the kalman optimization\&. The map and unmap functions are inverse one to other\&. 
+.PP
+Definition at line 21 of file AbstractParameterMapper\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AbstractParameterMapper::AbstractParameterMapper ()"
+Dummy constructor\&. 
+.PP
+Definition at line 10 of file AbstractParameterMapper\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual vector<double> AbstractParameterMapper::map (vector< double > problemParameter)\fC [pure virtual]\fP"
+Maps the problem parameters into the space of parameters where kalman filter optimize them\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIproblemParameter\fP Set of problem parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of kalman parameters 
+.RE
+.PP
+
+.PP
+Implemented in \fBCompositeParameterMapper\fP, \fBSigmoidParameterMapper\fP, \fBExponentialParameterMapper\fP, and \fBIdentityParameterMapper\fP\&.
+.SS "virtual vector<double> AbstractParameterMapper::unmap (vector< double > kalmanParameter)\fC [pure virtual]\fP"
+Maps the kalman parameters into the space of problem parameters\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIkalmanParameter\fP Set of kalman parameters\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Set of problem parameters\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBCompositeParameterMapper\fP, \fBSigmoidParameterMapper\fP, \fBExponentialParameterMapper\fP, and \fBIdentityParameterMapper\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for A Kalman Library (AKL) from the source code\&.
