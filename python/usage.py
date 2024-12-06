@@ -3,34 +3,42 @@ import numpy as np
 from mpi4py import MPI
 
 
-def forward_operator(x, n_states, theta, n_parameters):
+def forward_operator(x: np.ndarray, n_states: int, theta: np.ndarray, n_parameters: int) -> int:
     """
     Forward operator A(x, θ) that propagates the state
     Args:
         x: numpy array - State vector (modified in-place)
         n_states: int - Number of states
-        theta: numpy array - Parameter vector
+        theta: numpy array - Parameter vector (modified in-place)
         n_parameters: int - Number of parameters
     Returns:
-        int: Status (1 for success)
+        int: Status (1 for success, 0 for failure)
     """
-    # Example implementation - modify x in-place based on theta
-    for i in range(min(n_states, n_parameters)):
-        x[i] = theta[i] * x[i]
-    return 1
+    try:
+        # Both x and theta can be modified in-place
+        for i in range(min(n_states, n_parameters)):
+            x[i] = theta[i] * x[i]
+            theta[i] = theta[i] * 1.01  # Example modification of parameters
+        return 1
+    except Exception as e:
+        print(f"Error in forward operator: {e}")
+        return 0
 
-def observation_operator(x, n_states, z, n_observations): 
+def observation_operator(x: np.ndarray, n_states: int, z: np.ndarray, n_observations: int) -> None:
     """
     Observation operator H(x) that maps state to observations
     Args:
-        x: numpy array - State vector
+        x: numpy array - State vector (read-only)
         n_states: int - Number of states
         z: numpy array - Observation vector (modified in-place)
         n_observations: int - Number of observations
     """
-    # Example implementation: observe first n_observations components
-    for i in range(n_observations):
-        z[i] = x[i] if i < n_states else 0.0
+    try:
+        # x is read-only, only z should be modified
+        for i in range(n_observations):
+            z[i] = x[i] if i < n_states else 0.0
+    except Exception as e:
+        print(f"Error in observation operator: {e}")
 
 def main():
     # Initialize MPI
