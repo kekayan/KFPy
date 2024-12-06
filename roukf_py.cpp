@@ -4,7 +4,6 @@
 #include "ROUKF.h"
 #include "AbstractROUKF.h"
 #include "SigmaPointsGenerator.h"
-#include <mpi.h>
 
 namespace py = pybind11;
 
@@ -13,39 +12,49 @@ static py::function py_forward_func;
 static py::function py_observation_func;
 
 // Wrapper functions that call the Python functions
-int forward_wrapper(double* x, int n_states, double* out, int n_out) {
-    // Create NumPy arrays without copying data
-    py::array_t<double> x_array({n_states}, x);
-    py::array_t<double> out_array({n_out}, out);
-
-    // Call the Python function
-    py::object result = py_forward_func(x_array, n_states, out_array, n_out);
-
-    // Return the result as int
-    return result.cast<int>();
+int forward_wrapper(double* states, int n_states, double* params, int n_params) {
+    py::gil_scoped_acquire gil;
+    
+    // Create numpy views of both arrays without copying
+    py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
+    py::array_t<double> params_array({n_params}, {sizeof(double)}, params);
+    
+    try {
+        py::object result = py_forward_func(states_array, n_states, params_array, n_params);
+        // Copy back both arrays as they might be modified
+        auto states_buf = states_array.request();
+        auto params_buf = params_array.request();
+        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
+        std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
+        return result.cast<int>();
+    } catch (const py::error_already_set& e) {
+        std::cerr << "Python error in forward operation: " << e.what() << std::endl;
+        return -1;
+    }
 }
 
-void observation_wrapper(double* x, int n_states, double* z, int n_observations) {
-    // Create NumPy arrays without copying data
-    py::array_t<double> x_array({n_states}, x);
-    py::array_t<double> z_array({n_observations}, z);
-
-    // Call the Python function
-    py_observation_func(x_array, n_states, z_array, n_observations);
+void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
+    py::gil_scoped_acquire gil;
+    
+    // Create numpy views of both arrays without copying
+    py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
+    py::array_t<double> obs_array({n_obs}, {sizeof(double)}, obs);
+    
+    try {
+        py_observation_func(states_array, n_states, obs_array, n_obs);
+        // Only copy back observations as states are read-only
+        auto obs_buf = obs_array.request();
+        std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
+    } catch (const py::error_already_set& e) {
+        std::cerr << "Python error in observation operation: " << e.what() << std::endl;
+    }
 }
+
+
 
 PYBIND11_MODULE(roukf_py, m) {
     m.doc() = "ROUKF (Reduced-Order Unscented Kalman Filter) Python bindings";
     
-    // Initialize MPI if needed
-    int initialized;
-    MPI_Initialized(&initialized);
-    if (!initialized) {
-        int argc = 0;
-        char** argv = nullptr;
-        MPI_Init(&argc, &argv);
-    }
-
     // Bind SigmaPointsGenerator::SIGMA_DISTRIBUTION enum
     py::enum_<SigmaPointsGenerator::SIGMA_DISTRIBUTION>(m, "SigmaDistribution")
         .value("SIMPLEX", SigmaPointsGenerator::SIMPLEX)
@@ -108,19 +117,26 @@ PYBIND11_MODULE(roukf_py, m) {
         .def("executeStep", [](ROUKF& self, py::array_t<double> observations,
                                py::function forward_func,
                                py::function observation_func) {
+            py::gil_scoped_release release;
+            
             py::buffer_info obs_buf = observations.request();
-
-            // Store the Python functions
-            py_forward_func = forward_func;
-            py_observation_func = observation_func;
-
-            // Call executeStep with wrapper functions
+            
+            // Store the Python callbacks
+            {
+                py::gil_scoped_acquire gil;
+                py_forward_func = forward_func;
+                py_observation_func = observation_func;
+            }
+            
             return self.executeStep(
                 static_cast<double*>(obs_buf.ptr),
                 forward_wrapper,
                 observation_wrapper
             );
-        })
+        }, "Execute a single step of the ROUKF algorithm",
+           py::arg("observations"),
+           py::arg("forward_func"),
+           py::arg("observation_func"))
         .def("executeStepParallel", [](ROUKF& self, py::array_t<double> observations,
                                       std::function<int(double*, int, double*, int)> forward_func,
                                       std::function<void(double*, int, double*, int)> observation_func,
@@ -152,13 +168,4 @@ PYBIND11_MODULE(roukf_py, m) {
                        static_cast<double*>(params_buf.ptr),
                        sigma_distribution);
         });
-
-    // Add cleanup handler
-    atexit([]() {
-        int finalized;
-        MPI_Finalized(&finalized);
-        if (!finalized) {
-            MPI_Finalize();
-        }
-    });
 }
