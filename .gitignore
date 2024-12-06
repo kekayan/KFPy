@@ -5,3 +5,7 @@
 
 /nbproject/
 /.settings/
+roukf.egg-info/
+
+*.pyc
+*.so

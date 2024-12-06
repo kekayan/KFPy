@@ -3,6 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 #-------------------------------------------------------------------------------
 
 SET(CMAKE_BUILD_TYPE Debug)
+SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Project name, CMakeLists files in this project can
 # refer to the root source directory of the project as ${kalman_SOURCE_DIR}
@@ -31,7 +32,12 @@ SET(LIB_NAME ${PROJECT_NAME})
 # Find MPI, and include the necessary headers-----------------------------------
 #-------------------------------------------------------------------------------
 FIND_PACKAGE(MPI REQUIRED)
-
+FIND_PACKAGE(OpenMP)
+FIND_PACKAGE(Python3 REQUIRED COMPONENTS Interpreter Development)
+FIND_PACKAGE(pybind11 REQUIRED)
+FIND_PACKAGE(BLAS REQUIRED)
+FIND_PACKAGE(LAPACK REQUIRED)
+FIND_PACKAGE(Armadillo REQUIRED)
 
 # Directories that need to be included (containing headers)---------------------
 #-------------------------------------------------------------------------------
@@ -40,13 +46,18 @@ INCLUDE_DIRECTORIES(
 	${kalman_SOURCE_DIR}/io/
 	${kalman_SOURCE_DIR}/mapping/
 	${kalman_SOURCE_DIR}/
+	${Python3_INCLUDE_DIRS}/
+	${pybind11_INCLUDE_DIRS}/
+	${ARMADILLO_INCLUDE_DIRS}
 )
 
 # Compilation flags-------------------------------------------------------------
 #-------------------------------------------------------------------------------
-SET(GCC_COMPILE_FLAGS "-std=c++11 -Wall -Wextra -O3")
+SET(GCC_COMPILE_FLAGS "-std=c++11 -Wall -Wextra -O3 -fPIC")
 
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COMPILE_FLAGS}" )
+SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS}" )
+set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
+
 
 # List of all necessary source files--------------------------------------------
 #-------------------------------------------------------------------------------
@@ -62,6 +73,7 @@ SET(kalman_SRCs
 	./ROUKF.cpp
 	./MappedROUKF.cpp
 	./AbstractROUKF.cpp
+	./roukf_py.cpp
 )
 
 SET( CMAKE_VERBOSE_MAKEFILE ON )
@@ -70,3 +82,23 @@ SET( CMAKE_VERBOSE_MAKEFILE ON )
 #-------------------------------------------------------------------------------
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${kalman_SRCs})
 ADD_LIBRARY(${PROJECT_NAME}_static STATIC ${kalman_SRCs})
+
+
+# Add source files explicitly
+add_library(roukf_lib STATIC
+    ROUKF.cpp
+    AbstractROUKF.cpp  # Make sure this is included
+    SigmaPointsGenerator.cpp
+)
+
+# Create the Python module
+pybind11_add_module(roukf_py roukf_py.cpp)
+
+# Link against the static library
+target_link_libraries(roukf_py PRIVATE 
+    roukf_lib
+    MPI::MPI_CXX
+    ${ARMADILLO_LIBRARIES}  # If you're using Armadillo
+    ${LAPACK_LIBRARIES}
+    ${BLAS_LIBRARIES}
+)
