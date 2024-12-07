@@ -2,6 +2,8 @@ from roukf import ROUKF, SigmaDistribution
 import numpy as np
 from mpi4py import MPI
 
+# Set random seed for reproducibility
+
 
 def forward_operator(x: np.ndarray, n_states: int, theta: np.ndarray, n_parameters: int) -> int:
     """
@@ -28,15 +30,15 @@ def observation_operator(x: np.ndarray, n_states: int, z: np.ndarray, n_observat
     """
     Observation operator H(x) that maps state to observations
     Args:
-        x: numpy array - State vector (read-only)
+        x: numpy array - State vector (modified in-place) I don't know 
         n_states: int - Number of states
         z: numpy array - Observation vector (modified in-place)
         n_observations: int - Number of observations
     """
     try:
-        # x is read-only, only z should be modified
         for i in range(n_observations):
             z[i] = x[i] if i < n_states else 0.0
+            x[i] = x[i] * 1.01
     except Exception as e:
         print(f"Error in observation operator: {e}")
 
@@ -74,7 +76,7 @@ def main():
     kalman_filter.setState(initial_guess)
 
 
-    observations = np.random.rand(n_observations)
+    observations = np.ones(n_observations)
 
 
     for _ in range(3):

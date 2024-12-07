@@ -21,11 +21,18 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
     
     try {
         py::object result = py_forward_func(states_array, n_states, params_array, n_params);
-        // Copy back both arrays as they might be modified
+        
+        // Check if Python returned new arrays instead of modifying in-place
         auto states_buf = states_array.request();
+        if (static_cast<double*>(states_buf.ptr) != states) {
+            std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
+        }
+        
         auto params_buf = params_array.request();
-        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
-        std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
+        if (static_cast<double*>(params_buf.ptr) != params) {
+            std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
+        }
+        
         return result.cast<int>();
     } catch (const py::error_already_set& e) {
         std::cerr << "Python error in forward operation: " << e.what() << std::endl;
@@ -42,9 +49,17 @@ void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     
     try {
         py_observation_func(states_array, n_states, obs_array, n_obs);
-        // Only copy back observations as states are read-only
+        
+        // Check if Python returned new arrays instead of modifying in-place
+        auto states_buf = states_array.request();
+        if (static_cast<double*>(states_buf.ptr) != states) {
+            std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
+        }
+        
         auto obs_buf = obs_array.request();
-        std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
+        if (static_cast<double*>(obs_buf.ptr) != obs) {
+            std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
+        }
     } catch (const py::error_already_set& e) {
         std::cerr << "Python error in observation operation: " << e.what() << std::endl;
     }
