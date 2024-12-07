@@ -27,8 +27,6 @@ py::function CallbackStorage::observation_func;
 // Safe wrapper functions
 int forward_wrapper(double* states, int n_states, double* params, int n_params) {
     std::cout << "forward_wrapper" << std::endl;
-    py::gil_scoped_acquire gil;
-    std::cout << "forward_wrapper gil scoped" << std::endl;
     
     try {
         std::cout << "forward_wrapper try" << std::endl;
@@ -49,8 +47,7 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
 
 void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     std::cout << "observation_wrapper" << std::endl;
-    py::gil_scoped_acquire gil;
-    std::cout << "observation_wrapper gil scoped" << std::endl;
+    
     try {
         std::cout << "observation_wrapper try" << std::endl;
         auto states_array = py::array_t<double>(n_states, states);
@@ -122,15 +119,12 @@ PYBIND11_MODULE(roukf_py, m) {
                                py::function forward_func,
                                py::function observation_func) {
             std::cout << "executeStep" << std::endl;
-            py::gil_scoped_release release;
-            std::cout << "executeStep gil scoped" << std::endl;
+            
             py::buffer_info obs_buf = observations.request();
             std::cout << "executeStep buffer info" << std::endl;
+            
             // Store the Python callbacks
-            {
-                py::gil_scoped_acquire gil;
-                CallbackStorage::setCallbacks(forward_func, observation_func);
-            }
+            CallbackStorage::setCallbacks(forward_func, observation_func);
             std::cout << "executeStep set callbacks" << std::endl;
             
             return self.executeStep(
