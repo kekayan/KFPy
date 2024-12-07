@@ -8,6 +8,10 @@
 ```bash
 sudo apt-get install build-essential
 ```
+2. Install libconfig using
+```
+sudo apt-get install libconfig++-dev
+```
 
 
 ### Armadillo library 6.2

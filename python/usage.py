@@ -1,9 +1,5 @@
 from roukf import ROUKF, SigmaDistribution
 import numpy as np
-from mpi4py import MPI
-
-# Set random seed for reproducibility
-
 
 def forward_operator(x: np.ndarray, n_states: int, theta: np.ndarray, n_parameters: int) -> int:
     """
@@ -43,9 +39,6 @@ def observation_operator(x: np.ndarray, n_states: int, z: np.ndarray, n_observat
         print(f"Error in observation operator: {e}")
 
 def main():
-    # Initialize MPI
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
 
     # Example dimensions
     n_observations = 10  # Number of observations
@@ -105,8 +98,6 @@ def main():
         SigmaDistribution.SIMPLEX
     )
     print("Kalman filter has been reset.")
-
-    MPI.Finalize()
 
 if __name__ == "__main__":
     main()

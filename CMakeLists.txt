@@ -1,7 +1,7 @@
 # Specified the minimum required version of cmake-------------------------------
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 #-------------------------------------------------------------------------------
-
+# set(CMAKE_PREFIX_PATH  "/hpc/knan475/miniconda3/envs/kfpy/")
 SET(CMAKE_BUILD_TYPE Debug)
 SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -67,13 +67,13 @@ SET(kalman_SRCs
 	./mapping/ExponentialParameterMapper.cpp
 	./mapping/CompositeParameterMapper.cpp
 	./mapping/AbstractParameterMapper.cpp
-	./io/ConfigurationFileReader.cpp
+	# ./io/ConfigurationFileReader.cpp
 	./StaticROUKF.cpp
 	./SigmaPointsGenerator.cpp
 	./ROUKF.cpp
 	./MappedROUKF.cpp
 	./AbstractROUKF.cpp
-	./roukf_py.cpp
+	./ROUKFPy.cpp
 )
 
 SET( CMAKE_VERBOSE_MAKEFILE ON )
@@ -92,7 +92,7 @@ add_library(roukf_lib STATIC
 )
 
 # Create the Python module
-pybind11_add_module(roukf_py roukf_py.cpp)
+pybind11_add_module(roukf_py ROUKFPy.cpp)
 
 # Link against the static library
 target_link_libraries(roukf_py PRIVATE 
