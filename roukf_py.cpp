@@ -30,23 +30,14 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
     std::cerr << "Entering forward_wrapper" << std::endl;
     
     try {
-        // Create new arrays with copy
-        auto states_array = py::array_t<double>(n_states);
-        auto params_array = py::array_t<double>(n_params);
-        
-        // Copy data into arrays
-        auto states_buf = states_array.request();
-        auto params_buf = params_array.request();
-        std::memcpy(states_buf.ptr, states, n_states * sizeof(double));
-        std::memcpy(params_buf.ptr, params, n_params * sizeof(double));
+        auto states_array = py::array_t<double>(n_states, states);
+        auto params_array = py::array_t<double>(n_params, params);
         
         std::cerr << "Calling Python forward function" << std::endl;
-        // Call Python function
         py::object result = CallbackStorage::forward_func(states_array, n_states, params_array, n_params);
         
-        // Copy data back
-        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
-        std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
+        std::memcpy(states, states_array.data(), n_states * sizeof(double));
+        std::memcpy(params, params_array.data(), n_params * sizeof(double));
         
         std::cerr << "Exiting forward_wrapper" << std::endl;
         return result.cast<int>();
@@ -61,23 +52,14 @@ void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     std::cerr << "Entering observation_wrapper" << std::endl;
     
     try {
-        // Create new arrays with copy
-        auto states_array = py::array_t<double>(n_states);
-        auto obs_array = py::array_t<double>(n_obs);
-        
-        // Copy data into arrays
-        auto states_buf = states_array.request();
-        auto obs_buf = obs_array.request();
-        std::memcpy(states_buf.ptr, states, n_states * sizeof(double));
-        std::memcpy(obs_buf.ptr, obs, n_obs * sizeof(double));
+        auto states_array = py::array_t<double>(n_states, states);
+        auto obs_array = py::array_t<double>(n_obs, obs);
         
         std::cerr << "Calling Python observation function" << std::endl;
-        // Call Python function
         CallbackStorage::observation_func(states_array, n_states, obs_array, n_obs);
         
-        // Copy data back
-        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
-        std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
+        std::memcpy(states, states_array.data(), n_states * sizeof(double));
+        std::memcpy(obs, obs_array.data(), n_obs * sizeof(double));
         
         std::cerr << "Exiting observation_wrapper" << std::endl;
     } catch (const std::exception& e) {
@@ -104,17 +86,13 @@ PYBIND11_MODULE(roukf_py, m) {
             double* state;
             self.getState(&state);
             py::array_t<double> result(self.getStates());
-            auto buf = result.request();
-            double* ptr = static_cast<double*>(buf.ptr);
-            std::memcpy(ptr, state, self.getStates() * sizeof(double));
+            std::memcpy(result.mutable_data(), state, self.getStates() * sizeof(double));
             std::cerr << "Exiting getState" << std::endl;
             return result;
         })
         .def("setState", [](AbstractROUKF& self, py::array_t<double> array) {
             std::cerr << "Entering setState" << std::endl;
-            py::buffer_info buf = array.request();
-            double* ptr = static_cast<double*>(buf.ptr);
-            self.setState(ptr);
+            self.setState(array.mutable_data());
             std::cerr << "Exiting setState" << std::endl;
         })
         .def("getError", [](AbstractROUKF& self) {
@@ -134,9 +112,7 @@ PYBIND11_MODULE(roukf_py, m) {
         .def("hasConverged", &AbstractROUKF::hasConverged)
         .def("setParameters", [](AbstractROUKF& self, py::array_t<double> array) {
             std::cerr << "Entering setParameters" << std::endl;
-            py::buffer_info buf = array.request();
-            double* ptr = static_cast<double*>(buf.ptr);
-            self.setParameters(ptr);
+            self.setParameters(array.mutable_data());
             std::cerr << "Exiting setParameters" << std::endl;
         });
 
@@ -147,11 +123,9 @@ PYBIND11_MODULE(roukf_py, m) {
                          py::array_t<double> parameters_uncertainty,
                          SigmaPointsGenerator::SIGMA_DISTRIBUTION sigma_distribution) {
             std::cerr << "Entering ROUKF constructor" << std::endl;
-            py::buffer_info states_buf = states_uncertainty.request();
-            py::buffer_info params_buf = parameters_uncertainty.request();
             auto instance = new ROUKF(n_observations, n_states, n_parameters,
-                                      static_cast<double*>(states_buf.ptr),
-                                      static_cast<double*>(params_buf.ptr),
+                                      states_uncertainty.mutable_data(),
+                                      parameters_uncertainty.mutable_data(),
                                       sigma_distribution);
             std::cerr << "Exiting ROUKF constructor" << std::endl;
             return instance;
@@ -212,8 +186,8 @@ PYBIND11_MODULE(roukf_py, m) {
             py::buffer_info params_buf = parameters_uncertainty.request();
 
             self.reset(n_observations, n_states, n_parameters,
-                       static_cast<double*>(states_buf.ptr),
-                       static_cast<double*>(params_buf.ptr),
+                       states_uncertainty.mutable_data(),
+                       parameters_uncertainty.mutable_data(),
                        sigma_distribution);
             std::cerr << "Exiting reset" << std::endl;
         });
