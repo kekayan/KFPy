@@ -26,17 +26,20 @@ py::function CallbackStorage::observation_func;
 
 // Safe wrapper functions
 int forward_wrapper(double* states, int n_states, double* params, int n_params) {
+    std::cout << "forward_wrapper" << std::endl;
     py::gil_scoped_acquire gil;
+    std::cout << "forward_wrapper gil scoped" << std::endl;
     
     try {
+        std::cout << "forward_wrapper try" << std::endl;
         auto states_array = py::array_t<double>(n_states, states);
         auto params_array = py::array_t<double>(n_params, params);
-        
+        std::cout << "forward_wrapper arrays" << std::endl;
         py::object result = CallbackStorage::forward_func(states_array, n_states, params_array, n_params);
-        
+        std::cout << "forward_wrapper result" << std::endl;
         std::memcpy(states, states_array.data(), n_states * sizeof(double));
         std::memcpy(params, params_array.data(), n_params * sizeof(double));
-        
+        std::cout << "forward_wrapper memcpy" << std::endl;
         return result.cast<int>();
     } catch (const std::exception& e) {
         std::cerr << "Forward wrapper error: " << e.what() << std::endl;
@@ -45,17 +48,19 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
 }
 
 void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
+    std::cout << "observation_wrapper" << std::endl;
     py::gil_scoped_acquire gil;
-    
+    std::cout << "observation_wrapper gil scoped" << std::endl;
     try {
+        std::cout << "observation_wrapper try" << std::endl;
         auto states_array = py::array_t<double>(n_states, states);
         auto obs_array = py::array_t<double>(n_obs, obs);
-        
+        std::cout << "observation_wrapper arrays" << std::endl;
         CallbackStorage::observation_func(states_array, n_states, obs_array, n_obs);
-        
+        std::cout << "observation_wrapper callback" << std::endl;
         std::memcpy(states, states_array.data(), n_states * sizeof(double));
         std::memcpy(obs, obs_array.data(), n_obs * sizeof(double));
-        
+        std::cout << "observation_wrapper memcpy" << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Observation wrapper error: " << e.what() << std::endl;
     }
@@ -118,14 +123,15 @@ PYBIND11_MODULE(roukf_py, m) {
                                py::function observation_func) {
             std::cout << "executeStep" << std::endl;
             py::gil_scoped_release release;
-            
+            std::cout << "executeStep gil scoped" << std::endl;
             py::buffer_info obs_buf = observations.request();
-            
+            std::cout << "executeStep buffer info" << std::endl;
             // Store the Python callbacks
             {
                 py::gil_scoped_acquire gil;
                 CallbackStorage::setCallbacks(forward_func, observation_func);
             }
+            std::cout << "executeStep set callbacks" << std::endl;
             
             return self.executeStep(
                 static_cast<double*>(obs_buf.ptr),
