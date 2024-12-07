@@ -11,25 +11,31 @@ namespace py = pybind11;
 static py::function py_forward_func;
 static py::function py_observation_func;
 
-// Wrapper functions that call the Python functions
+// Corrected wrapper functions
 int forward_wrapper(double* states, int n_states, double* params, int n_params) {
     py::gil_scoped_acquire gil;
     
-    // Create numpy arrays by copying the data
-    py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
-    py::array_t<double> params_array({n_params}, {sizeof(double)}, params);
+    // Create capsules
+    py::capsule states_capsule(states, [](void*){ /* do nothing */ });
+    py::capsule params_capsule(params, [](void*){ /* do nothing */ });
     
-    // Copy data into the numpy arrays
-    std::memcpy(states_array.mutable_data(), states, n_states * sizeof(double));
-    std::memcpy(params_array.mutable_data(), params, n_params * sizeof(double));
+    // Create NumPy arrays without copying data
+    py::array_t<double> states_array(
+        {n_states},
+        {sizeof(double)},
+        states,
+        states_capsule
+    );
+    
+    py::array_t<double> params_array(
+        {n_params},
+        {sizeof(double)},
+        params,
+        params_capsule
+    );
     
     try {
         py::object result = py_forward_func(states_array, n_states, params_array, n_params);
-        
-        // Copy modified data back to the original arrays
-        std::memcpy(states, states_array.data(), n_states * sizeof(double));
-        std::memcpy(params, params_array.data(), n_params * sizeof(double));
-        
         return result.cast<int>();
     } catch (const py::error_already_set& e) {
         std::cerr << "Python error in forward operation: " << e.what() << std::endl;
@@ -40,26 +46,31 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
 void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     py::gil_scoped_acquire gil;
     
-    // Create numpy arrays by copying the data
-    py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
-    py::array_t<double> obs_array({n_obs}, {sizeof(double)}, obs);
+    // Create capsules
+    py::capsule states_capsule(states, [](void*){ /* do nothing */ });
+    py::capsule obs_capsule(obs, [](void*){ /* do nothing */ });
     
-    // Copy data into the numpy arrays
-    std::memcpy(states_array.mutable_data(), states, n_states * sizeof(double));
-    std::memcpy(obs_array.mutable_data(), obs, n_obs * sizeof(double));
+    // Create NumPy arrays without copying data
+    py::array_t<double> states_array(
+        {n_states},
+        {sizeof(double)},
+        states,
+        states_capsule
+    );
+    
+    py::array_t<double> obs_array(
+        {n_obs},
+        {sizeof(double)},
+        obs,
+        obs_capsule
+    );
     
     try {
         py_observation_func(states_array, n_states, obs_array, n_obs);
-        
-        // Copy modified data back to the original arrays
-        std::memcpy(states, states_array.data(), n_states * sizeof(double));
-        std::memcpy(obs, obs_array.data(), n_obs * sizeof(double));
     } catch (const py::error_already_set& e) {
         std::cerr << "Python error in observation operation: " << e.what() << std::endl;
     }
 }
-
-
 
 PYBIND11_MODULE(roukf_py, m) {
     m.doc() = "ROUKF (Reduced-Order Unscented Kalman Filter) Python bindings";
