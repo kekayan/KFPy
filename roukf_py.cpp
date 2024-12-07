@@ -15,23 +15,20 @@ static py::function py_observation_func;
 int forward_wrapper(double* states, int n_states, double* params, int n_params) {
     py::gil_scoped_acquire gil;
     
-    // Create numpy views of both arrays without copying
+    // Create numpy arrays by copying the data
     py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
     py::array_t<double> params_array({n_params}, {sizeof(double)}, params);
+    
+    // Copy data into the numpy arrays
+    std::memcpy(states_array.mutable_data(), states, n_states * sizeof(double));
+    std::memcpy(params_array.mutable_data(), params, n_params * sizeof(double));
     
     try {
         py::object result = py_forward_func(states_array, n_states, params_array, n_params);
         
-        // Check if Python returned new arrays instead of modifying in-place
-        auto states_buf = states_array.request();
-        if (static_cast<double*>(states_buf.ptr) != states) {
-            std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
-        }
-        
-        auto params_buf = params_array.request();
-        if (static_cast<double*>(params_buf.ptr) != params) {
-            std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
-        }
+        // Copy modified data back to the original arrays
+        std::memcpy(states, states_array.data(), n_states * sizeof(double));
+        std::memcpy(params, params_array.data(), n_params * sizeof(double));
         
         return result.cast<int>();
     } catch (const py::error_already_set& e) {
@@ -43,23 +40,20 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
 void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     py::gil_scoped_acquire gil;
     
-    // Create numpy views of both arrays without copying
+    // Create numpy arrays by copying the data
     py::array_t<double> states_array({n_states}, {sizeof(double)}, states);
     py::array_t<double> obs_array({n_obs}, {sizeof(double)}, obs);
+    
+    // Copy data into the numpy arrays
+    std::memcpy(states_array.mutable_data(), states, n_states * sizeof(double));
+    std::memcpy(obs_array.mutable_data(), obs, n_obs * sizeof(double));
     
     try {
         py_observation_func(states_array, n_states, obs_array, n_obs);
         
-        // Check if Python returned new arrays instead of modifying in-place
-        auto states_buf = states_array.request();
-        if (static_cast<double*>(states_buf.ptr) != states) {
-            std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
-        }
-        
-        auto obs_buf = obs_array.request();
-        if (static_cast<double*>(obs_buf.ptr) != obs) {
-            std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
-        }
+        // Copy modified data back to the original arrays
+        std::memcpy(states, states_array.data(), n_states * sizeof(double));
+        std::memcpy(obs, obs_array.data(), n_obs * sizeof(double));
     } catch (const py::error_already_set& e) {
         std::cerr << "Python error in observation operation: " << e.what() << std::endl;
     }
