@@ -7,38 +7,47 @@
 
 namespace py = pybind11;
 
-// Static variables to hold the Python callables
-static py::function py_forward_func;
-static py::function py_observation_func;
+// Thread-safe storage for Python callbacks
+class CallbackStorage {
+public:
+    static void setCallbacks(const py::function& forward, const py::function& observation) {
+        py::gil_scoped_acquire gil;
+        forward_func = forward;
+        observation_func = observation;
+    }
+    
+    static py::function forward_func;
+    static py::function observation_func;
+};
 
-// Corrected wrapper functions
+py::function CallbackStorage::forward_func;
+py::function CallbackStorage::observation_func;
+
+// Safe wrapper functions
 int forward_wrapper(double* states, int n_states, double* params, int n_params) {
     py::gil_scoped_acquire gil;
     
-    // Create capsules
-    py::capsule states_capsule(states, [](void*){ /* do nothing */ });
-    py::capsule params_capsule(params, [](void*){ /* do nothing */ });
-    
-    // Create NumPy arrays without copying data
-    py::array_t<double> states_array(
-        {n_states},
-        {sizeof(double)},
-        states,
-        states_capsule
-    );
-    
-    py::array_t<double> params_array(
-        {n_params},
-        {sizeof(double)},
-        params,
-        params_capsule
-    );
-    
     try {
-        py::object result = py_forward_func(states_array, n_states, params_array, n_params);
+        // Create new arrays with copy
+        auto states_array = py::array_t<double>({n_states});
+        auto params_array = py::array_t<double>({n_params});
+        
+        // Copy data into arrays
+        auto states_buf = states_array.request();
+        auto params_buf = params_array.request();
+        std::memcpy(states_buf.ptr, states, n_states * sizeof(double));
+        std::memcpy(params_buf.ptr, params, n_params * sizeof(double));
+        
+        // Call Python function
+        py::object result = CallbackStorage::forward_func(states_array, n_states, params_array, n_params);
+        
+        // Copy data back
+        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
+        std::memcpy(params, params_buf.ptr, n_params * sizeof(double));
+        
         return result.cast<int>();
-    } catch (const py::error_already_set& e) {
-        std::cerr << "Python error in forward operation: " << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Forward wrapper error: " << e.what() << std::endl;
         return -1;
     }
 }
@@ -46,29 +55,25 @@ int forward_wrapper(double* states, int n_states, double* params, int n_params) 
 void observation_wrapper(double* states, int n_states, double* obs, int n_obs) {
     py::gil_scoped_acquire gil;
     
-    // Create capsules
-    py::capsule states_capsule(states, [](void*){ /* do nothing */ });
-    py::capsule obs_capsule(obs, [](void*){ /* do nothing */ });
-    
-    // Create NumPy arrays without copying data
-    py::array_t<double> states_array(
-        {n_states},
-        {sizeof(double)},
-        states,
-        states_capsule
-    );
-    
-    py::array_t<double> obs_array(
-        {n_obs},
-        {sizeof(double)},
-        obs,
-        obs_capsule
-    );
-    
     try {
-        py_observation_func(states_array, n_states, obs_array, n_obs);
-    } catch (const py::error_already_set& e) {
-        std::cerr << "Python error in observation operation: " << e.what() << std::endl;
+        // Create new arrays with copy
+        auto states_array = py::array_t<double>({n_states});
+        auto obs_array = py::array_t<double>({n_obs});
+        
+        // Copy data into arrays
+        auto states_buf = states_array.request();
+        auto obs_buf = obs_array.request();
+        std::memcpy(states_buf.ptr, states, n_states * sizeof(double));
+        std::memcpy(obs_buf.ptr, obs, n_obs * sizeof(double));
+        
+        // Call Python function
+        CallbackStorage::observation_func(states_array, n_states, obs_array, n_obs);
+        
+        // Copy data back
+        std::memcpy(states, states_buf.ptr, n_states * sizeof(double));
+        std::memcpy(obs, obs_buf.ptr, n_obs * sizeof(double));
+    } catch (const std::exception& e) {
+        std::cerr << "Observation wrapper error: " << e.what() << std::endl;
     }
 }
 
@@ -144,8 +149,7 @@ PYBIND11_MODULE(roukf_py, m) {
             // Store the Python callbacks
             {
                 py::gil_scoped_acquire gil;
-                py_forward_func = forward_func;
-                py_observation_func = observation_func;
+                CallbackStorage::setCallbacks(forward_func, observation_func);
             }
             
             return self.executeStep(
