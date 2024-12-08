@@ -9,7 +9,7 @@
 sudo apt-get install build-essential
 ```
 2. Install libconfig using
-```
+```bash
 sudo apt-get install libconfig++-dev
 ```
 
@@ -24,6 +24,11 @@ sudo apt-get install libboost-dev
 2. Install Armadillo using 
 ```bash
 sudo apt-get install libarmadillo-dev
+```
+or with Conda
+```bash
+conda install conda-forge::armadillo
+
 ```
 
 ### MPI
@@ -42,6 +47,12 @@ which mpiexec
 ```bash
 mpicc --version
 mpiexec –version
+```
+or with conda
+
+```bash
+conda install conda-forge::openmpi
+
 ```
 
 ### CMake

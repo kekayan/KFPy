@@ -13,5 +13,5 @@ setup(
     ],
     author='Gonzalo Maso Talou',
     author_email='g.masotalou@auckland.ac.nz',
-    description='ROUKF Kalman filter for parameter estimation',
+    description='ROUKF - Kalman filter for parameter estimation',
 )
