@@ -102,3 +102,13 @@ target_link_libraries(roukf_py PRIVATE
     ${LAPACK_LIBRARIES}
     ${BLAS_LIBRARIES}
 )
+
+add_executable(roukf_example example.cpp)
+target_link_libraries(roukf_example
+    PRIVATE
+    roukf_lib
+    MPI::MPI_CXX
+    ${ARMADILLO_LIBRARIES}
+    ${LAPACK_LIBRARIES}
+    ${BLAS_LIBRARIES}
+)

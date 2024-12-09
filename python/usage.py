@@ -46,12 +46,12 @@ def main():
     n_parameters = 5    # Number of parameters to estimate
 
     # Initialize initialGuess and parametersUncertainties
-    initial_guess = np.full(n_parameters, 2.5E5, dtype=np.float64)
     parameters_uncertainty = np.full(n_parameters, 1E8, dtype=np.float64)
 
+    initial_guess = np.full(n_states, 2.5E5, dtype=np.float64)
 
     # Create uncertainty arrays
-    states_uncertainty = np.ones(n_observations, dtype=np.float64)
+    states_uncertainty = np.full(n_states, 1E2,dtype=np.float64)
 
 
     # Initialize ROUKF
@@ -64,9 +64,13 @@ def main():
         SigmaDistribution.SIMPLEX
     )
 
+    initial_state = np.ascontiguousarray(initial_guess)
+    print("###########################")
+    print(initial_state)
+    print("###########################")
 
     # Set initial condition
-    kalman_filter.setState(initial_guess)
+    kalman_filter.setState(initial_state)
 
 
     observations = np.ones(n_observations)
@@ -84,7 +88,7 @@ def main():
         state_estimate = kalman_filter.getState()
         print(f"Error: {error:.6f}, State estimate: {state_estimate[:5]}")  # Print first 5 values
 
-        
+    
      
 
 
