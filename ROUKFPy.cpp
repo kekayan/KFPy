@@ -126,7 +126,19 @@ PYBIND11_MODULE(roukf_py, m) {
         .def("getMaxIterations", &AbstractROUKF::getMaxIterations)
         .def("setMaxIterations", &AbstractROUKF::setMaxIterations, py::arg("maxIterations"))
         .def("setParameters", [](AbstractROUKF& self, py::array_t<double> array) {
-            self.setParameters(array.mutable_data());
+            
+             // Make sure the array is contiguous and in the correct format
+            py::buffer_info buf = array.request();
+            if (buf.ndim != 1) {
+                throw std::runtime_error("Number of dimensions must be one");
+            }
+            
+            // Create a copy of the data
+            std::vector<double> data_copy(buf.shape[0]);
+            std::memcpy(data_copy.data(), array.data(), buf.shape[0] * sizeof(double));
+            
+            // Pass the copied data to setState
+            self.setParameters(data_copy.data());
         });
 
     py::class_<ROUKF, AbstractROUKF>(m, "ROUKF")

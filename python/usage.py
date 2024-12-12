@@ -49,6 +49,7 @@ def main():
     parameters_uncertainty = np.full(n_parameters, 1E8, dtype=np.float64)
 
     initial_guess = np.full(n_states, 2.5E5, dtype=np.float64)
+    initial_parameters = np.full(n_parameters, 0, dtype=np.float64)
 
     # Create uncertainty arrays
     states_uncertainty = np.full(n_states, 1E2,dtype=np.float64)
@@ -65,13 +66,14 @@ def main():
     )
 
     initial_state = np.ascontiguousarray(initial_guess)
+    initial_parameters = np.ascontiguousarray(initial_parameters)
     print("###########################")
     print(initial_state)
     print("###########################")
 
     # Set initial condition
     kalman_filter.setState(initial_state)
-
+    kalman_filter.setParameters(initial_parameters)
 
     observations = np.ones(n_observations)
 
