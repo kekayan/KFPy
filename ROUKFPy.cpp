@@ -139,6 +139,11 @@ PYBIND11_MODULE(roukf_py, m) {
             
             // Pass the copied data to setState
             self.setParameters(data_copy.data());
+        })
+        .def("getParameters", [](AbstractROUKF& self, int nParameters) {
+            double* params;
+            self.getParameters(&params);
+            return py::array_t<double>({nParameters}, {sizeof(double)}, params, py::capsule(params, [](void *v) {}));
         });
 
     py::class_<ROUKF, AbstractROUKF>(m, "ROUKF")

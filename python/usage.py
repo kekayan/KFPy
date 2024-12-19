@@ -49,7 +49,7 @@ def main():
     parameters_uncertainty = np.full(n_parameters, 1E8, dtype=np.float64)
 
     initial_guess = np.full(n_states, 2.5E5, dtype=np.float64)
-    initial_parameters = np.full(n_parameters, 0, dtype=np.float64)
+    initial_parameters = np.full(n_parameters, 1000, dtype=np.float64)
 
     # Create uncertainty arrays
     states_uncertainty = np.full(n_states, 1E2,dtype=np.float64)
@@ -86,11 +86,12 @@ def main():
             forward_operator, 
             observation_operator
         )
-        
-        state_estimate = kalman_filter.getState()
-        print(f"Error: {error:.6f}, State estimate: {state_estimate[:5]}")  # Print first 5 values
-
+        parameters_estimate = kalman_filter.getParameters(n_parameters)
+        print(f"Error: {error:.6f}, State estimate: {parameters_estimate}")  # Print first 5 values
     
+    print("###########################")
+    print(parameters_estimate)
+    print("###########################")
      
 
 
